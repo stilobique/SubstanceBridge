@@ -1,8 +1,22 @@
 import bpy
-import tempfile
+import threading
 import subprocess
 
+# ------------------------------------------------------------------------
+# Create a class for a generic thread, else blender are block.
+# ------------------------------------------------------------------------
+class PainterThread(threading.Thread):
+    def __init__(self):
+        self.stdout = None
+        self.stderr = None
+        threading.Thread.__init__(self)
+
+    def run(self, mesh, path):
+        popen = subprocess.call([painterpath, '--mesh', mesh])
+
+# ------------------------------------------------------------------------
 # Function to create an Obj, and export to painter
+# ------------------------------------------------------------------------
 class ExportPainter(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.painter_export"
@@ -11,8 +25,6 @@ class ExportPainter(bpy.types.Operator):
     def execute(self, context):
         # All variable for the script
         obj = bpy.context.active_object
-        name = obj.name
-        # uv = bpy.data.meshes[name].uv_textures
         mesh = str('D:\\temps\\zob.obj')
         path = str('D:\\Graflog\\Allegorithmic\\Substance Painter 2\\Substance Painter 2.exe')
         command = "zob"
