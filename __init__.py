@@ -9,8 +9,9 @@
 import bpy
 import sys
 
-from substancebridge.CommandPainter import ExportPainter
-from substancebridge.GUI import PainterPanel
+from SubstanceBridge.settings import SubstanceSettings
+from SubstanceBridge.CommandPainter import ExportPainter
+from SubstanceBridge.GUI import PainterPanel
 
 # ------------------------------------------------------------------------
 # MetaData Add-On Blender
@@ -38,10 +39,12 @@ bl_info = {
 def register():
     bpy.utils.register_class(ExportPainter)
     bpy.utils.register_class(PainterPanel)
+    bpy.utils.register_class(SubstanceSettings)
 
 def unregister():
     bpy.utils.unregister_class(ExportPainter)
     bpy.utils.unregister_class(PainterPanel)
+    bpy.utils.unregister_class(SubstanceSettings)
 
 if __name__ == "__main__":
     register()
