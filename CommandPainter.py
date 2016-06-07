@@ -1,6 +1,9 @@
 import bpy
 import threading
 import subprocess
+import os
+
+from SubstanceBridge.settings import SubstanceSettings
 
 # ------------------------------------------------------------------------
 # Create a class for a generic thread, else blender are block.
@@ -11,8 +14,10 @@ class PainterThread(threading.Thread):
         self.stderr = None
         threading.Thread.__init__(self)
 
-    def run(self, mesh, path):
-        popen = subprocess.call([painterpath, '--mesh', mesh])
+    def run(self):
+        path = 'D:\\Games\\SteamLibrary\\steamapps\\common\\Substance Painter\\Substance Painter.exe'
+        mesh = 'E:\\Temp\\Blender\\zob.obj'
+        popen = subprocess.call([path, '--mesh', mesh])
 
 # ------------------------------------------------------------------------
 # Function to create an Obj, and export to painter
@@ -25,8 +30,9 @@ class ExportPainter(bpy.types.Operator):
     def execute(self, context):
         # All variable for the script
         obj = bpy.context.active_object
-        mesh = str('D:\\temps\\zob.obj')
-        path = str('D:\\Graflog\\Allegorithmic\\Substance Painter 2\\Substance Painter 2.exe')
+        mesh = 'E:\\Temp\\Blender\\zob.obj'
+        path = 'D:\\Games\\SteamLibrary\\steamapps\\common\\Substance Painter\\Substance Painter.exe'
+        # path = 'D:\\Graflog\\Allegorithmic\\Substance Painter 2\\Substance Painter 2.exe'
         command = "zob"
         
         if obj.type == 'MESH':
@@ -36,8 +42,9 @@ class ExportPainter(bpy.types.Operator):
 
                 # def launch_painter(self):
                 """Launch substance painter program."""
-                myclass = PainterThread(mesh, path)
+                myclass = PainterThread()
                 myclass.start()
+                print(painterpath)
 
             else:
                 self.report({'WARNING'}, "This object don't containt a UV layers.")
