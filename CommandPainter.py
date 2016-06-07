@@ -12,17 +12,21 @@ class ExportPainter(bpy.types.Operator):
         # All variable for the script
         obj = bpy.context.active_object
         name = obj.name
-        uv = bpy.data.meshes[name].uv_textures
+        # uv = bpy.data.meshes[name].uv_textures
         mesh = str('D:\\temps\\zob.obj')
-        painterpath = str('D:\\Graflog\\Allegorithmic\\Substance Painter 2\\Substance Painter 2.exe')
+        path = str('D:\\Graflog\\Allegorithmic\\Substance Painter 2\\Substance Painter 2.exe')
+        command = "zob"
         
         if obj.type == 'MESH':
-            if uv:
+            if bpy.data.meshes[obj.name].uv_textures:
                 # Export du mesh selectionne
                 bpy.ops.export_scene.obj(filepath=mesh, use_selection=True, path_mode='AUTO')
-                
-                # Call Substance Painter
-                subprocess.call([painterpath, '--mesh', mesh])
+
+                # def launch_painter(self):
+                """Launch substance painter program."""
+                myclass = PainterThread(mesh, path)
+                myclass.start()
+
             else:
                 self.report({'WARNING'}, "This object don't containt a UV layers.")
                 return {'CANCELLED'}
