@@ -1,5 +1,8 @@
 import bpy
 
+# ------------------------------------------------------------------------
+# Substance panel.
+# ------------------------------------------------------------------------
 class PainterPanel(bpy.types.Panel): 
     bl_label = "Painter Export"
     bl_space_type = "VIEW_3D"
@@ -7,4 +10,6 @@ class PainterPanel(bpy.types.Panel):
     bl_category = "Tools"
  
     def draw(self, context):
-        self.layout.operator("object.painter_export", text="Export to Painter")
+        global custom_icons
+        self.layout.operator("object.painter_export", text="Substance Painter")
+        self.layout.operator("object.painter_export", text="Open Painter project")

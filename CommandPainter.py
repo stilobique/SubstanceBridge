@@ -15,14 +15,19 @@ class PainterThread(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-        path = 'D:\\Games\\SteamLibrary\\steamapps\\common\\Substance Painter\\Substance Painter.exe'
+        user_preferences = bpy.context.user_preferences
+        addon_prefs = user_preferences.addons["SubstanceBridge"].preferences
+        painter = str(addon_prefs.painterpath) # Set path for instant meshes
+        
         mesh = 'E:\\Temp\\Blender\\zob.obj'
-        popen = subprocess.call([path, '--mesh', mesh])
+        project = 'E:\\Documents\\Substance Painter\\samples\\Hans.spp'
+        
+        popen = subprocess.call([painter, '--mesh', mesh])
 
 # ------------------------------------------------------------------------
 # Function to create an Obj, and export to painter
 # ------------------------------------------------------------------------
-class ExportPainter(bpy.types.Operator):
+class NewPainterProject(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.painter_export"
     bl_label = "Send mesh to painter export"
@@ -44,7 +49,7 @@ class ExportPainter(bpy.types.Operator):
                 """Launch substance painter program."""
                 myclass = PainterThread()
                 myclass.start()
-                print(painterpath)
+                # print(painterpath)
 
             else:
                 self.report({'WARNING'}, "This object don't containt a UV layers.")

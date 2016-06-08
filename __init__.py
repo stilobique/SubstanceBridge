@@ -10,7 +10,7 @@ import bpy
 import sys
 
 from SubstanceBridge.settings import SubstanceSettings
-from SubstanceBridge.CommandPainter import ExportPainter
+from SubstanceBridge.CommandPainter import NewPainterProject
 from SubstanceBridge.GUI import PainterPanel
 
 # ------------------------------------------------------------------------
@@ -19,7 +19,7 @@ from SubstanceBridge.GUI import PainterPanel
 bl_info = {
     "name": "Substance Bridge",
     "author": "stilobique",
-    "version": (0, 2),
+    "version": (0, 3),
     "blender": (2, 77, 0),
     "location": "Tool Shelf > Substance Panel",
     "description": "A simple way to export into substance painter.",
@@ -37,12 +37,12 @@ bl_info = {
 # Mise dans le registre des différentes functions pour l'addon.
 # ------------------------------------------------------------------------
 def register():
-    bpy.utils.register_class(ExportPainter)
+    bpy.utils.register_class(NewPainterProject)
     bpy.utils.register_class(PainterPanel)
     bpy.utils.register_class(SubstanceSettings)
 
 def unregister():
-    bpy.utils.unregister_class(ExportPainter)
+    bpy.utils.unregister_class(NewPainterProject)
     bpy.utils.unregister_class(PainterPanel)
     bpy.utils.unregister_class(SubstanceSettings)
 
