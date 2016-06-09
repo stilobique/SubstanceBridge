@@ -14,11 +14,7 @@ class PainterThread(threading.Thread):
         self.stderr = None
         threading.Thread.__init__(self)
 
-    def run(self):
-        user_preferences = bpy.context.user_preferences
-        addon_prefs = user_preferences.addons["SubstanceBridge"].preferences
-        painter = str(addon_prefs.painterpath) # Set path for instant meshes
-        
+    def run(self):        
         mesh = 'E:\\Temp\\Blender\\zob.obj'
         project = 'E:\\Documents\\Substance Painter\\samples\\Hans.spp'
         
@@ -45,11 +41,19 @@ class NewPainterProject(bpy.types.Operator):
                 # Export du mesh selectionne
                 bpy.ops.export_scene.obj(filepath=mesh, use_selection=True, path_mode='AUTO')
 
-                # def launch_painter(self):
-                """Launch substance painter program."""
-                myclass = PainterThread()
-                myclass.start()
-                # print(painterpath)
+                user_preferences = bpy.context.user_preferences
+                addon_prefs = user_preferences.addons["SubstanceBridge"].preferences
+                painter = str(addon_prefs.painterpath) # Set path for instant meshes
+                
+                # Verification si le soft est configuré dans le path
+                if painter:
+                    """Launch substance painter program."""
+                    myclass = PainterThread()
+                    myclass.start()
+
+                else:
+                    self.report({'WARNING'}, "No path configured, setup into User Pre.")
+                    return {'CANCELLED'}
 
             else:
                 self.report({'WARNING'}, "This object don't containt a UV layers.")
