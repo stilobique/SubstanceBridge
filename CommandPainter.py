@@ -18,6 +18,10 @@ class PainterThread(threading.Thread):
         mesh = 'E:\\Temp\\Blender\\zob.obj'
         project = 'E:\\Documents\\Substance Painter\\samples\\Hans.spp'
         
+        user_preferences = bpy.context.user_preferences
+        addon_prefs = user_preferences.addons["SubstanceBridge"].preferences
+        painter = str(addon_prefs.painterpath) # Set path for instant meshes
+        
         popen = subprocess.call([painter, '--mesh', mesh])
 
 # ------------------------------------------------------------------------
