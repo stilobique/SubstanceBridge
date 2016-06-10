@@ -15,7 +15,9 @@ class PainterThread(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):        
-        mesh = 'E:\\Temp\\Blender\\zob.obj'
+        temp_folder = bpy.app.tempdir
+        temp_mesh = 'zob.obj'
+        mesh = temp_folder + temp_mesh
         project = 'E:\\Documents\\Substance Painter\\samples\\Hans.spp'
         
         user_preferences = bpy.context.user_preferences
@@ -35,10 +37,10 @@ class NewPainterProject(bpy.types.Operator):
     def execute(self, context):
         # All variable for the script
         obj = bpy.context.active_object
-        mesh = 'E:\\Temp\\Blender\\zob.obj'
-        path = 'D:\\Games\\SteamLibrary\\steamapps\\common\\Substance Painter\\Substance Painter.exe'
-        # path = 'D:\\Graflog\\Allegorithmic\\Substance Painter 2\\Substance Painter 2.exe'
-        command = "zob"
+     
+        temp_folder = bpy.app.tempdir
+        temp_mesh = 'zob.obj'
+        mesh = temp_folder + temp_mesh
         
         if obj.type == 'MESH':
             if bpy.data.meshes[obj.name].uv_textures:
