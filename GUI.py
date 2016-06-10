@@ -1,4 +1,5 @@
 import bpy
+from bpy.props import StringProperty
 
 # ------------------------------------------------------------------------
 # Substance panel.
@@ -9,11 +10,10 @@ class PainterPanel(bpy.types.Panel):
     bl_region_type = "TOOLS"
     bl_category = "Tools"
     
-    bpy.types.Scene.sppfile = bpy.props.StringProperty \
-        (
+    sppfile = StringProperty(
         name = ".spp file",
         description = "Field project path",
-        subtype = 'DIR_PATH'
+        subtype = 'FILE_PATH'
         )
  
     def draw(self, context):
