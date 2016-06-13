@@ -10,7 +10,8 @@ class PainterPanel(bpy.types.Panel):
     bl_region_type = "TOOLS"
     bl_category = "Tools"
 
-    sppfile = StringProperty(
+    bpy.types.Scene.sppfile = StringProperty \
+        (
         name = ".spp file",
         description = "Field project path",
         subtype = 'FILE_PATH'
@@ -21,5 +22,5 @@ class PainterPanel(bpy.types.Panel):
         self.layout.operator("object.painter_export", text="New Project").project = False
         
         self.layout.label(text="Substance Painter Project")
-        # self.layout.prop(context.scene, 'sppfile')
+        self.layout.prop(context.scene, 'sppfile')
         self.layout.operator("object.painter_export", text="Re-export").project = True
