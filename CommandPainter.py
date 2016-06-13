@@ -3,6 +3,7 @@ import threading
 import subprocess
 import os
 
+from bpy.props import StringProperty, BoolProperty
 from SubstanceBridge.settings import SubstanceSettings
 
 # ------------------------------------------------------------------------
@@ -29,11 +30,15 @@ class PainterThread(threading.Thread):
 # ------------------------------------------------------------------------
 # Function to create an Obj, and export to painter
 # ------------------------------------------------------------------------
-class NewPainterProject(bpy.types.Operator):
+class PainterProject(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.painter_export"
     bl_label = "Send mesh to painter export"
-    
+
+    project = BoolProperty(
+        name = "It's a new project."
+        )
+        
     def execute(self, context):
         # All variable for the script
         obj = bpy.context.active_object
@@ -43,36 +48,35 @@ class NewPainterProject(bpy.types.Operator):
         mesh = temp_folder + temp_mesh
         
         # Test pour un nouveau project ou l'update d'un project.
-        if project:
+        if self.project:
             print("Update project mother fucker.")
         
         else:
-            print("New Project Painter.")
-            # if obj.type == 'MESH':
-                # if bpy.data.meshes[obj.name].uv_textures:
-                    # # Export du mesh selectionne
-                    # bpy.ops.export_scene.obj(filepath=mesh, use_selection=True, path_mode='AUTO')
+            if obj.type == 'MESH':
+                if bpy.data.meshes[obj.name].uv_textures:
+                    # Export du mesh selectionne
+                    bpy.ops.export_scene.obj(filepath=mesh, use_selection=True, path_mode='AUTO')
 
-                    # user_preferences = bpy.context.user_preferences
-                    # addon_prefs = user_preferences.addons["SubstanceBridge"].preferences
-                    # painter = str(addon_prefs.painterpath) # Set path for instant meshes
+                    user_preferences = bpy.context.user_preferences
+                    addon_prefs = user_preferences.addons["SubstanceBridge"].preferences
+                    painter = str(addon_prefs.painterpath) # Set path for instant meshes
                     
-                    # # Verification si le soft est configuré dans le path
-                    # if painter:
-                        # """Launch substance painter program."""
-                        # myclass = PainterThread()
-                        # myclass.start()
+                    # Verification si le soft est configuré dans le path
+                    if painter:
+                        """Launch substance painter program."""
+                        myclass = PainterThread()
+                        myclass.start()
 
-                    # else:
-                        # self.report({'WARNING'}, "No path configured, setup into User Pre.")
-                        # return {'CANCELLED'}
+                    else:
+                        self.report({'WARNING'}, "No path configured, setup into User Pre.")
+                        return {'CANCELLED'}
 
-                # else:
-                    # self.report({'WARNING'}, "This object don't containt a UV layers.")
-                    # return {'CANCELLED'}
+                else:
+                    self.report({'WARNING'}, "This object don't containt a UV layers.")
+                    return {'CANCELLED'}
 
-            # else:
-                # self.report({'WARNING'}, "This object is not a mesh.")
-                # return {'CANCELLED'}
+            else:
+                self.report({'WARNING'}, "This object is not a mesh.")
+                return {'CANCELLED'}
 
         return {'FINISHED'}

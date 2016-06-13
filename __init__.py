@@ -10,7 +10,7 @@ import bpy
 import sys
 
 from SubstanceBridge.settings import SubstanceSettings
-from SubstanceBridge.CommandPainter import NewPainterProject
+from SubstanceBridge.CommandPainter import PainterProject
 from SubstanceBridge.GUI import PainterPanel
 
 # ------------------------------------------------------------------------
@@ -37,12 +37,12 @@ bl_info = {
 # Mise dans le registre des différentes functions pour l'addon.
 # ------------------------------------------------------------------------
 def register():
-    bpy.utils.register_class(NewPainterProject)
+    bpy.utils.register_class(PainterProject)
     bpy.utils.register_class(PainterPanel)
     bpy.utils.register_class(SubstanceSettings)
 
 def unregister():
-    bpy.utils.unregister_class(NewPainterProject)
+    bpy.utils.unregister_class(PainterProject)
     bpy.utils.unregister_class(PainterPanel)
     bpy.utils.unregister_class(SubstanceSettings)
 
