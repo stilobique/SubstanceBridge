@@ -40,6 +40,15 @@ def register():
     bpy.utils.register_class(PainterProject)
     bpy.utils.register_class(PainterPanel)
     bpy.utils.register_class(SubstanceSettings)
+    
+    # Project Path.
+    bpy.types.Scene.sppfile = bpy.props.StringProperty \
+        (
+        name = "Project Path",
+        default = "",
+        description = "Field project path",
+        subtype = 'FILE_PATH'
+        )
 
 def unregister():
     bpy.utils.unregister_class(PainterProject)

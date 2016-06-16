@@ -8,6 +8,7 @@ from bpy.props import StringProperty, IntProperty, BoolProperty
 class SubstanceSettings(bpy.types.AddonPreferences):
     bl_idname = "SubstanceBridge"
 
+    # All software path.
     painterpath = StringProperty(
             name="Substance Painter",
             subtype='FILE_PATH',
@@ -20,7 +21,13 @@ class SubstanceSettings(bpy.types.AddonPreferences):
             name="Batch Tools",
             subtype='FILE_PATH',
             )
-
+            
+    # Project Path.
+    projectpath = StringProperty(
+            name="path Spp files",
+            subtype='FILE_PATH',
+            )
+            
     def draw(self, context):
         layout = self.layout
         layout.label(text="All substance path.")
