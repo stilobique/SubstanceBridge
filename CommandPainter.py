@@ -69,16 +69,16 @@ class PainterProject(bpy.types.Operator):
                 
                 # Verification si le soft est configuré dans le path
                 if self.painter:
+                    path_sppfile = os.path.abspath(bpy.context.scene.sppfile)
                     # Test If it's a new project.
                     if self.project == True:
-                        path_sppfile = os.path.abspath(bpy.context.scene.sppfile)
                         self.path_project = path_sppfile
-                        launchpainter = SubstancePainterThread(self.painter, self.path_project)
-                        launchpainter.start()
+
                     else:
                         self.path_project = ""
-                        launchpainter = SubstancePainterThread(self.painter, self.path_project)
-                        launchpainter.start()
+
+                    launchpainter = SubstancePainterThread(self.painter, self.path_project)
+                    launchpainter.start()
                 else:
                     self.report({'WARNING'}, "No path configured, setup into User Pre.")
                     return {'CANCELLED'}
