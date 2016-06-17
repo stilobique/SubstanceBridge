@@ -19,7 +19,7 @@ from SubstanceBridge.GUI import PainterPanel
 bl_info = {
     "name": "Substance Bridge",
     "author": "stilobique",
-    "version": (0, 3),
+    "version": (0, 3, 1),
     "blender": (2, 77, 0),
     "location": "Tool Shelf > Substance Panel",
     "description": "A simple way to export into substance painter.",
