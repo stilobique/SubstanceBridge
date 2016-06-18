@@ -10,7 +10,7 @@ import bpy
 import sys
 
 from SubstanceBridge.settings import SubstanceSettings
-from SubstanceBridge.CommandPainter import PainterProject
+from SubstanceBridge.SubstancePainter import PainterProject
 from SubstanceBridge.GUI import PainterPanel
 
 # ------------------------------------------------------------------------
