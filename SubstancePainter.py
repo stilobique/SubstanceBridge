@@ -2,6 +2,7 @@ import bpy
 import threading
 import subprocess
 import os
+import SubstanceBridge
 
 from bpy.props import StringProperty, BoolProperty
 from SubstanceBridge.settings import SubstanceSettings
@@ -16,9 +17,7 @@ class SubstancePainterThread(threading.Thread):
         self.path_project = path_project
         
     def run(self):
-        temp_folder = bpy.app.tempdir
-        temp_mesh = 'tmp.obj'
-        mesh = temp_folder + temp_mesh
+        mesh = SubstanceBridge.SubstanceVariable.tmp_mesh
         if self.path_project == "":
             popen = subprocess.call([self.path_painter, '--mesh', mesh])
             
@@ -51,16 +50,12 @@ class PainterProject(bpy.types.Operator):
         )
 
     def execute(self, context):
-        # All variable for the script
         obj = bpy.context.active_object
-     
-        temp_folder = bpy.app.tempdir
-        temp_mesh = 'tmp.obj'
-        mesh = temp_folder + temp_mesh
+        mesh = SubstanceBridge.SubstanceVariable.tmp_mesh
         
         user_preferences = bpy.context.user_preferences
         addon_prefs = user_preferences.addons["SubstanceBridge"].preferences
-        self.painter = str(addon_prefs.painterpath) # Set path for instant meshes
+        self.painter = str(addon_prefs.painterpath)
         
         if obj.type == 'MESH':
             if bpy.data.meshes[obj.name].uv_textures:

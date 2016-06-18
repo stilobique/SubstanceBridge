@@ -31,8 +31,13 @@ bl_info = {
 # ------------------------------------------------------------------------
 # Settings for this addons
 # ------------------------------------------------------------------------
-
-
+class SubstanceVariable(bpy.types.PropertyGroup):
+    
+    # Temporary Folder and obj mesh
+    tmp_folder = bpy.app.tempdir
+    mesh_name = 'tmp.obj'
+    tmp_mesh = tmp_folder + mesh_name
+    
 # ------------------------------------------------------------------------
 # Mise dans le registre des différentes functions pour l'addon.
 # ------------------------------------------------------------------------
@@ -40,6 +45,7 @@ def register():
     bpy.utils.register_class(PainterProject)
     bpy.utils.register_class(PainterPanel)
     bpy.utils.register_class(SubstanceSettings)
+    bpy.utils.register_class(SubstanceVariable)
     
     # Project Path.
     bpy.types.Scene.sppfile = bpy.props.StringProperty \
@@ -54,6 +60,7 @@ def unregister():
     bpy.utils.unregister_class(PainterProject)
     bpy.utils.unregister_class(PainterPanel)
     bpy.utils.unregister_class(SubstanceSettings)
+    bpy.utils.unregister_class(SubstanceVariable)
 
 if __name__ == "__main__":
     register()
