@@ -58,7 +58,8 @@ class PainterProject(bpy.types.Operator):
         self.painter = str(addon_prefs.painterpath)
         
         if obj.type == 'MESH':
-            if bpy.data.meshes[obj.name].uv_textures:
+            obj_mesh = bpy.data.objects[obj.name].data
+            if obj_mesh.uv_textures:
                 # Export du mesh selectionne
                 bpy.ops.export_scene.obj(filepath=mesh, use_selection=True, path_mode='AUTO')
                 
