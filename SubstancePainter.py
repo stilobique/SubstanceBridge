@@ -27,7 +27,7 @@ class SubstancePainterThread(threading.Thread):
 # ------------------------------------------------------------------------
 # Function to create an Obj, and export to painter
 # ------------------------------------------------------------------------
-class PainterProject(bpy.types.Operator):
+class PainterExport(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.painter_export"
     bl_label = "Send mesh to painter export"

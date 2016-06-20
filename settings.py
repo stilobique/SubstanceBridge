@@ -10,16 +10,16 @@ class SubstanceSettings(bpy.types.AddonPreferences):
 
     # All software path.
     painterpath = StringProperty(
-            name="Substance Painter",
-            subtype='FILE_PATH',
+            name = "Substance Painter",
+            subtype = "FILE_PATH",
             )
-    designerpath = StringProperty(
+    path_designer = StringProperty(
             name="Substance Designer",
             subtype='FILE_PATH',
             )
-    batchtools = StringProperty(
+    path_batchtools = StringProperty(
             name="Batch Tools",
-            subtype='FILE_PATH',
+            subtype='DIR_PATH',
             )
             
     # Project Path.
@@ -32,8 +32,8 @@ class SubstanceSettings(bpy.types.AddonPreferences):
         layout = self.layout
         layout.label(text="All substance path.")
         layout.prop(self, "painterpath")
-        layout.prop(self, "designerpath")
-        layout.prop(self, "batchtools")
+        layout.prop(self, "path_batchtools")
+        layout.prop(self, "path_designer")
 
 	
 def register():
