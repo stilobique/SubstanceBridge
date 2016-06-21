@@ -10,8 +10,9 @@ import bpy
 import sys
 
 from SubstanceBridge.settings import SubstanceSettings
-from SubstanceBridge.SubstancePainter import PainterExport
-from SubstanceBridge.GUI import PainterPanel
+from SubstanceBridge.SubstancePainter import Send_to_painter
+from SubstanceBridge.SubstanceBatchTools import *
+from SubstanceBridge.GUI import PainterPanel, BatchToolsPanel
 
 # ------------------------------------------------------------------------
 # MetaData Add-On Blender
@@ -42,8 +43,10 @@ class SubstanceVariable(bpy.types.PropertyGroup):
 # Mise dans le registre des différentes functions pour l'addon.
 # ------------------------------------------------------------------------
 def register():
-    bpy.utils.register_class(PainterExport)
+    bpy.utils.register_class(Send_to_painter)
+    # GUI Functions
     bpy.utils.register_class(PainterPanel)
+    bpy.utils.register_class(BatchToolsPanel)
     bpy.utils.register_class(SubstanceSettings)
     bpy.utils.register_class(SubstanceVariable)
     
@@ -55,10 +58,18 @@ def register():
         description = "Field project path",
         subtype = 'FILE_PATH'
         )
+    bpy.types.Scene.hp_object = bpy.props.CollectionProperty(
+        type=bpy.types.PropertyGroup
+    )
+    bpy.types.Scene.hp_name = bpy.props.StringProperty()
+    
+    bpy.app.handlers.scene_update_pre.append(list_high)
 
 def unregister():
-    bpy.utils.unregister_class(PainterExport)
+    bpy.utils.unregister_class(Send_to_painter)
+    # GUI Functions
     bpy.utils.unregister_class(PainterPanel)
+    bpy.utils.unregister_class(BatchToolsPanel)
     bpy.utils.unregister_class(SubstanceSettings)
     bpy.utils.unregister_class(SubstanceVariable)
 
