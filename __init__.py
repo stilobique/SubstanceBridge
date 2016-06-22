@@ -37,7 +37,7 @@ class SubstanceVariable(bpy.types.PropertyGroup):
     tmp_folder = bpy.app.tempdir
     mesh_name = 'tmp.obj'
     tmp_mesh = tmp_folder + mesh_name
-
+    
 # ------------------------------------------------------------------------
 # Mise dans le registre des différentes functions pour l'addon.
 # ------------------------------------------------------------------------
