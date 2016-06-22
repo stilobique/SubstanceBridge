@@ -13,3 +13,5 @@ Substance Batch Tools.
 https://support.allegorithmic.com/documentation/display/SB10/sbsbaker
 
 Thank you Jeremy http://dev-crea.com
+
+Attention au ban de pub !
