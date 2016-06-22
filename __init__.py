@@ -11,7 +11,7 @@ import sys
 
 from SubstanceBridge.settings import SubstanceSettings
 from SubstanceBridge.SubstancePainter import Send_to_painter
-from SubstanceBridge.SubstanceBatchTools import BatchTools
+# from SubstanceBridge.SubstanceBatchTools import BatchTools
 from SubstanceBridge.GUI import PainterPanel, BatchToolsPanel
 
 # ------------------------------------------------------------------------
