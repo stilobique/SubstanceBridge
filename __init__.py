@@ -11,7 +11,7 @@ import sys
 
 from SubstanceBridge.settings import SubstanceSettings
 from SubstanceBridge.SubstancePainter import Send_to_painter
-from SubstanceBridge.SubstanceBatchTools import *
+from SubstanceBridge.SubstanceBatchTools import BatchTools
 from SubstanceBridge.GUI import PainterPanel, BatchToolsPanel
 
 # ------------------------------------------------------------------------
@@ -33,7 +33,6 @@ bl_info = {
 # Settings for this addons
 # ------------------------------------------------------------------------
 class SubstanceVariable(bpy.types.PropertyGroup):
-    
     # Temporary Folder and obj mesh
     tmp_folder = bpy.app.tempdir
     mesh_name = 'tmp.obj'
@@ -44,13 +43,10 @@ class SubstanceVariable(bpy.types.PropertyGroup):
 # ------------------------------------------------------------------------
 def register():
     bpy.utils.register_class(Send_to_painter)
-    # GUI Functions
     bpy.utils.register_class(PainterPanel)
     bpy.utils.register_class(BatchToolsPanel)
     bpy.utils.register_class(SubstanceSettings)
     bpy.utils.register_class(SubstanceVariable)
-    
-    # Project Path.
     bpy.types.Scene.sppfile = bpy.props.StringProperty \
         (
         name = "Project Path",
@@ -58,16 +54,9 @@ def register():
         description = "Field project path",
         subtype = 'FILE_PATH'
         )
-    bpy.types.Scene.hp_object = bpy.props.CollectionProperty(
-        type=bpy.types.PropertyGroup
-    )
-    bpy.types.Scene.hp_name = bpy.props.StringProperty()
-    
-    bpy.app.handlers.scene_update_pre.append(list_high)
 
 def unregister():
     bpy.utils.unregister_class(Send_to_painter)
-    # GUI Functions
     bpy.utils.unregister_class(PainterPanel)
     bpy.utils.unregister_class(BatchToolsPanel)
     bpy.utils.unregister_class(SubstanceSettings)
