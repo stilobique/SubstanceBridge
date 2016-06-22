@@ -11,3 +11,5 @@ At the moment, i'm working with substance painter only.
 
 Substance Batch Tools.
 https://support.allegorithmic.com/documentation/display/SB10/sbsbaker
+
+Thank you Jeremy http://dev-crea.com
