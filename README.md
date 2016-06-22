@@ -1,17 +1,12 @@
-|| --------------------------
-
-A bridge between Substance Tools (painter, designer and other !)
-At the moment, i'm working with substance painter only. 
+Cette adons permet de faire le pont entre Blender est les outils d'Allegorithmic -substance painter, designer, batchtools... afin d'optimiser au mieux le workflow.
 
 
-|| --------------------------
-|| Substance Documentation
-||
-|| --------------------------
 
-Substance Batch Tools.
-https://support.allegorithmic.com/documentation/display/SB10/sbsbaker
+# Liens et documentation
+* [Source Github](https://github.com/stilobique/SubstanceBridge "substance bridge on github")
+* [SubstanceBridge Wiki](https://gitlab.supertardis.fr/stilobique/SubstanceBridge/wikis/home "substance bridge wiki").
+* [Substance Batch Tools](https://support.allegorithmic.com/documentation/display/SB10/sbsbaker "substance batchtools").
 
+
+# Notes
 Thank you Jeremy http://dev-crea.com
-
-Attention au ban de pub !
