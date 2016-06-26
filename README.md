@@ -3,10 +3,10 @@ Cette adons permet de faire le pont entre Blender est les outils d'Allegorithmic
 
 
 # Liens et documentation
-* [Source Github](https://github.com/stilobique/SubstanceBridge "substance bridge on github")
+* [Source Github - Stable Release](https://github.com/stilobique/SubstanceBridge "substance bridge on github")
 * [SubstanceBridge Wiki](https://gitlab.supertardis.fr/stilobique/SubstanceBridge/wikis/home "substance bridge wiki").
 * [Substance Batch Tools](https://support.allegorithmic.com/documentation/display/SB10/sbsbaker "substance batchtools").
 
 
 # Notes
-Thank you Jeremy http://dev-crea.com
+Thank you [Jeremy](http://dev-crea.com "Porfolio Jerem")
