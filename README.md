@@ -1,6 +1,10 @@
 Cette adons permet de faire le pont entre Blender est les outils d'Allegorithmic -substance painter, designer, batchtools... afin d'optimiser au mieux le workflow.
 
+# installation.
+Blender > File > User Preferences > Install Addon.
 
+## Windows
+C:\Users\Aurélien\AppData\Roaming\Blender Foundation\Blender\2.78\scripts\addons
 
 # Liens et documentation
 * [Source Github - Stable Release](https://github.com/stilobique/SubstanceBridge "substance bridge on github")
