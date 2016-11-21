@@ -7,7 +7,6 @@
 # Import all Package addon
 # ------------------------------------------------------------------------
 import bpy
-import sys
 
 from SubstanceBridge.settings import SubstanceSettings
 from SubstanceBridge.SubstancePainter import Send_to_painter
@@ -21,7 +20,7 @@ bl_info = {
     "name": "Substance Bridge",
     "author": "stilobique",
     "version": (0, 3, 1),
-    "blender": (2, 77, 0),
+    "blender": (2, 78, 1),
     "location": "Tool Shelf > Substance Panel",
     "description": "A simple way to export into substance painter.",
     "warning": "",
