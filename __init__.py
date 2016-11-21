@@ -12,7 +12,7 @@ import sys
 from SubstanceBridge.settings import SubstanceSettings
 from SubstanceBridge.SubstancePainter import Send_to_painter
 # from SubstanceBridge.SubstanceBatchTools import BatchTools
-from SubstanceBridge.GUI import PainterPanel, BatchToolsPanel
+from SubstanceBridge.GUI import PainterPanel
 
 # ------------------------------------------------------------------------
 # MetaData Add-On Blender
@@ -44,7 +44,6 @@ class SubstanceVariable(bpy.types.PropertyGroup):
 def register():
     bpy.utils.register_class(Send_to_painter)
     bpy.utils.register_class(PainterPanel)
-    bpy.utils.register_class(BatchToolsPanel)
     bpy.utils.register_class(SubstanceSettings)
     bpy.utils.register_class(SubstanceVariable)
     bpy.types.Scene.sppfile = bpy.props.StringProperty \
@@ -58,7 +57,6 @@ def register():
 def unregister():
     bpy.utils.unregister_class(Send_to_painter)
     bpy.utils.unregister_class(PainterPanel)
-    bpy.utils.unregister_class(BatchToolsPanel)
     bpy.utils.unregister_class(SubstanceSettings)
     bpy.utils.unregister_class(SubstanceVariable)
 
