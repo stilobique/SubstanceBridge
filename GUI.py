@@ -1,6 +1,5 @@
 import bpy
 
-# from SubstanceBridge import list_high
 
 # ------------------------------------------------------------------------
 # Substance Painter panel.

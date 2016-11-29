@@ -1,20 +1,17 @@
 import bpy
 
 
-
 class BatchTools(bpy.types.Operator):
     sbs_baker = "sbs_baker"
     sbs_cooker = "sbs_cooker"
     sbs_mutator = "sbs_mutator"
     sbs_render = "sbs_render"
-    
-    
-    
+
+
 # ------------------------------------------
 # Test pour récupérer tout les objects "high"
 # ------------------------------------------
 
-import bpy
 
 obj = bpy.data.objects
 prefix_high = "_high"
@@ -36,15 +33,18 @@ class HelloWorldPanel(bpy.types.Panel):
     def draw(self, context):
         layout = self.layout
 
-        obj = context.object
+        # obj = context.object
 
-        col = layout.column()        
-        col.prop_search(context.scene, "coll_string", context.scene, "coll", icon='OBJECT_DATA')
+        col = layout.column()
+        col.prop_search(context.scene, "coll_string", context.scene, "coll",
+                        icon='OBJECT_DATA')
+
 
 def populate_coll(scene):
     bpy.app.handlers.scene_update_pre.remove(populate_coll)
     scene.coll.clear()
-    def mod_tuples(enum_items):       
+
+    def mod_tuples(enum_items):
         for object in obj:
             # high in object.name
             if prefix_high in object.name:
@@ -52,6 +52,7 @@ def populate_coll(scene):
         return enum_items
     for identifier, name, description in enum_items:
         scene.coll.add().name = name
+
 
 def register():
     bpy.utils.register_module(__name__)
