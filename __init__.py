@@ -9,8 +9,8 @@
 import bpy
 
 from SubstanceBridge.settings import SubstanceSettings
-from SubstanceBridge.SubstancePainter import Send_to_painter
-# from SubstanceBridge.SubstanceBatchTools import BatchTools
+from SubstanceBridge.controllers.SubstancePainter import Send_to_painter
+# from SubstanceBridge.controllers.SubstanceBatchTools import BatchTools
 from SubstanceBridge.views.GUI import PainterPanel
 
 # -----------------------------------------------------------------------------
