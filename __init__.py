@@ -25,8 +25,7 @@ bl_info = {
     "description": "A simple way to export into substance painter.",
     "warning": "",
     "wiki_url": "",
-    "category": "3D View",
-    "locale": bpy.app.translations.locale
+    "category": "3D View"
     }
 
 
