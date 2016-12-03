@@ -1,7 +1,7 @@
 import bpy
 
 
-from bpy.props import StringProperty, IntProperty, BoolProperty
+from bpy.props import StringProperty
 
 # ------------------------------------------------------------------------
 # Settings for this addons
