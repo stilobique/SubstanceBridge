@@ -11,7 +11,7 @@ import bpy
 from SubstanceBridge.settings import SubstanceSettings
 from SubstanceBridge.SubstancePainter import Send_to_painter
 # from SubstanceBridge.SubstanceBatchTools import BatchTools
-from SubstanceBridge.GUI import PainterPanel
+from SubstanceBridge.views.GUI import PainterPanel
 
 # -----------------------------------------------------------------------------
 # MetaData Add-On Blender
