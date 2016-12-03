@@ -40,7 +40,7 @@ class SubstanceVariable(bpy.types.PropertyGroup):
 
 
 # -----------------------------------------------------------------------------
-# Mise dans le registre des différentes functions pour l'addon.
+# Update register all methods to this addons
 # -----------------------------------------------------------------------------
 def register():
     bpy.utils.register_class(Send_to_painter)
@@ -55,6 +55,9 @@ def register():
         )
 
 
+# -----------------------------------------------------------------------------
+# Delete register
+# -----------------------------------------------------------------------------
 def unregister():
     bpy.utils.unregister_class(Send_to_painter)
     bpy.utils.unregister_class(PainterPanel)
