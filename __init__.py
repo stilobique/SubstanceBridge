@@ -26,6 +26,7 @@ bl_info = {
     "warning": "",
     "wiki_url": "",
     "category": "3D View",
+    "locale": bpy.app.translations.locale
     }
 
 
