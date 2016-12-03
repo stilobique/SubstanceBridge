@@ -3,9 +3,9 @@
 #
 # Thx Jerem.
 
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Import all Package addon
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 import bpy
 
 from SubstanceBridge.settings import SubstanceSettings
@@ -13,9 +13,9 @@ from SubstanceBridge.SubstancePainter import Send_to_painter
 # from SubstanceBridge.SubstanceBatchTools import BatchTools
 from SubstanceBridge.GUI import PainterPanel
 
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # MetaData Add-On Blender
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 bl_info = {
     "name": "Substance Bridge",
     "author": "stilobique",
@@ -28,18 +28,18 @@ bl_info = {
     "category": "3D View",
     }
 
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Settings for this addons
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 class SubstanceVariable(bpy.types.PropertyGroup):
     # Temporary Folder and obj mesh
-    tmp_folder = bpy.app.tempdir
+    tmp_folder = bpy.context.user_preferences.filepaths.temporary_directory
     mesh_name = 'tmp.obj'
     tmp_mesh = tmp_folder + mesh_name
 
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Mise dans le registre des différentes functions pour l'addon.
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 def register():
     bpy.utils.register_class(Send_to_painter)
     bpy.utils.register_class(PainterPanel)
