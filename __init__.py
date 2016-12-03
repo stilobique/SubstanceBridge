@@ -28,6 +28,7 @@ bl_info = {
     "category": "3D View",
     }
 
+
 # -----------------------------------------------------------------------------
 # Settings for this addons
 # -----------------------------------------------------------------------------
@@ -37,6 +38,7 @@ class SubstanceVariable(bpy.types.PropertyGroup):
     mesh_name = 'tmp.obj'
     tmp_mesh = tmp_folder + mesh_name
 
+
 # -----------------------------------------------------------------------------
 # Mise dans le registre des différentes functions pour l'addon.
 # -----------------------------------------------------------------------------
@@ -45,19 +47,20 @@ def register():
     bpy.utils.register_class(PainterPanel)
     bpy.utils.register_class(SubstanceSettings)
     bpy.utils.register_class(SubstanceVariable)
-    bpy.types.Scene.sppfile = bpy.props.StringProperty \
-        (
-        name = "Project Path",
-        default = "",
-        description = "Field project path",
-        subtype = 'FILE_PATH'
+    bpy.types.Scene.sppfile = bpy.props.StringProperty(
+        name="Project Path",
+        default="",
+        description="Field project path",
+        subtype='FILE_PATH'
         )
+
 
 def unregister():
     bpy.utils.unregister_class(Send_to_painter)
     bpy.utils.unregister_class(PainterPanel)
     bpy.utils.unregister_class(SubstanceSettings)
     bpy.utils.unregister_class(SubstanceVariable)
+
 
 if __name__ == "__main__":
     register()
