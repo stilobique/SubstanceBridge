@@ -2,10 +2,10 @@ import bpy
 
 
 # -----------------------------------------------------------------------------
-# Substance Painter panel
+# Substance Project panel
 # -----------------------------------------------------------------------------
-class PainterPanel(bpy.types.Panel):
-    bl_label = "Substance Painter"
+class SubstanceProjectPanel(bpy.types.Panel):
+    bl_label = "Substance Project"
     bl_space_type = "VIEW_3D"
     bl_region_type = "TOOLS"
     bl_category = "Substances"
@@ -16,6 +16,8 @@ class PainterPanel(bpy.types.Panel):
         name = "New Project"
         layout.operator("object.painter_export", name).project = False
 
+        layout.label("Substance Project")
+
         type_file = 'sppfile'
         layout.prop(context.scene, type_file)
 
@@ -24,3 +26,35 @@ class PainterPanel(bpy.types.Panel):
 
         name = 'Texturing List'
         layout.operator("group.create", name)
+
+
+# -----------------------------------------------------------------------------
+# Texture Set List panel
+# -----------------------------------------------------------------------------
+class TextureSetListPanel(bpy.types.Panel):
+    bl_label = "Texture Set List"
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "TOOLS"
+    bl_category = "Substances"
+
+    def draw(self, context):
+        layout = self.layout
+
+        name = "Add a Set"
+        layout.operator("object.painter_export", name).project = False
+
+
+# -----------------------------------------------------------------------------
+# Baking panel
+# -----------------------------------------------------------------------------
+class BakingSubstancePanel(bpy.types.Panel):
+    bl_label = "Baking"
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "TOOLS"
+    bl_category = "Substances"
+
+    def draw(self, context):
+        layout = self.layout
+
+        name = "Baking map"
+        layout.operator("object.painter_export", name).project = False
