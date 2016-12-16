@@ -12,6 +12,8 @@ class SubstanceProjectPanel(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
+        scn = context.scene
+        # name_prj = SubstanceBridge.initVariable.ProjectName
 
         name = "New Project"
         layout.operator("object.painter_export", name).project = False
@@ -55,3 +57,15 @@ class BakingSubstancePanel(bpy.types.Panel):
 
         name = "Baking map"
         layout.operator("object.painter_export", name).project = False
+
+
+def register():
+    bpy.utils.register_class(SubstanceProjectPanel)
+    bpy.utils.register_class(TextureSetListPanel)
+    bpy.utils.register_class(BakingSubstancePanel)
+
+
+def unregister():
+    bpy.utils.unregister_class(SubstanceProjectPanel)
+    bpy.utils.unregister_class(TextureSetListPanel)
+    bpy.utils.unregister_class(BakingSubstancePanel)

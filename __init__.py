@@ -6,14 +6,25 @@
 # -----------------------------------------------------------------------------
 # Import all Package addon
 # -----------------------------------------------------------------------------
-import bpy
+modulesNames = [
+    'settings',
+    'controllers.SubstancePainter',
+    'views.GUI']
 
-from SubstanceBridge.settings import SubstanceSettings
-from SubstanceBridge.controllers.SubstancePainter import Send_to_painter
-# from SubstanceBridge.controllers.SubstanceBatchTools import BatchTools
-# from SubstanceBridge.views.GUI import SubstanceProjectPanel,
-# TextureSetListPanel, BakingSubstancePanel
-from SubstanceBridge.views.GUI import *
+modulesFullNames = []
+for currentModuleName in modulesNames:
+    modulesFullNames.append('{}.{}'.format(__name__, currentModuleName))
+
+import bpy
+import sys
+import importlib
+
+for currentModuleName in modulesFullNames:
+    if currentModuleName in sys.modules:
+        importlib.reload(sys.modules[currentModuleName])
+    else:
+        globals()[currentModuleName] = importlib.import_module(currentModuleName)
+
 
 # -----------------------------------------------------------------------------
 # MetaData Add-On Blender
@@ -22,13 +33,13 @@ bl_info = {
     "name": "Substance Bridge",
     "author": "stilobique",
     "version": (0, 3, 1),
-    "blender": (2, 78, 1),
+    "blender": (2, 78),
     "location": "Tool Shelf > Substance Panel",
     "description": "A simple way to export into substance painter.",
     "warning": "",
     "wiki_url": "",
     "category": "3D View"
-    }
+}
 
 
 # -----------------------------------------------------------------------------
@@ -40,38 +51,35 @@ class SubstanceVariable(bpy.types.PropertyGroup):
     mesh_name = 'tmp.obj'
     tmp_mesh = tmp_folder + mesh_name
 
+    # bpy.types.Scene.ProjectName = bpy.props.StringProperty(
+    #     name="Project")
+    # scn['ProjectName'] = "Painter Project"
+
 
 # -----------------------------------------------------------------------------
 # Update register all methods to this addons
 # -----------------------------------------------------------------------------
 def register():
-    bpy.utils.register_class(Send_to_painter)
-    # GUI class
-    bpy.utils.register_class(SubstanceProjectPanel)
-    bpy.utils.register_class(TextureSetListPanel)
-    bpy.utils.register_class(BakingSubstancePanel)
-    bpy.utils.register_class(SubstanceSettings)
-    bpy.utils.register_class(SubstanceVariable)
+    for currentModuleName in modulesFullNames:
+        if currentModuleName in sys.modules:
+            if hasattr(sys.modules[currentModuleName], 'register'):
+                sys.modules[currentModuleName].register()
+
     bpy.types.Scene.sppfile = bpy.props.StringProperty(
         name="Project Path",
         default="",
         description="Field project path",
         subtype='FILE_PATH'
-        )
+    )
+    bpy.utils.register_class(SubstanceVariable)
 
 
 # -----------------------------------------------------------------------------
 # Delete register
 # -----------------------------------------------------------------------------
 def unregister():
-    bpy.utils.unregister_class(Send_to_painter)
-    # GUI class
-    bpy.utils.unregister_class(SubstanceProjectPanel)
-    bpy.utils.unregister_class(TextureSetListPanel)
-    bpy.utils.unregister_class(BakingSubstancePanel)
-    bpy.utils.unregister_class(SubstanceSettings)
+    for currentModuleName in modulesFullNames:
+        if currentModuleName in sys.modules:
+            if hasattr(sys.modules[currentModuleName], 'unregister'):
+                sys.modules[currentModuleName].unregister()
     bpy.utils.unregister_class(SubstanceVariable)
-
-
-if __name__ == "__main__":
-    register()

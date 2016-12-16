@@ -96,3 +96,11 @@ class Send_to_painter(bpy.types.Operator):
             return {'CANCELLED'}
 
         return {'FINISHED'}
+
+
+def register():
+    bpy.utils.register_class(Send_to_painter)
+
+
+def unregister():
+    bpy.utils.unregister_class(Send_to_painter)
