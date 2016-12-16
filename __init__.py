@@ -6,24 +6,24 @@
 # -----------------------------------------------------------------------------
 # Import all Package addon
 # -----------------------------------------------------------------------------
+import bpy
+import sys
+import importlib
+
 modulesNames = [
     'settings',
     'controllers.SubstancePainter',
     'views.GUI']
 
 modulesFullNames = []
-for currentModuleName in modulesNames:
-    modulesFullNames.append('{}.{}'.format(__name__, currentModuleName))
+for currentModule in modulesNames:
+    modulesFullNames.append('{}.{}'.format(__name__, currentModule))
 
-import bpy
-import sys
-import importlib
-
-for currentModuleName in modulesFullNames:
-    if currentModuleName in sys.modules:
-        importlib.reload(sys.modules[currentModuleName])
+for currentModule in modulesFullNames:
+    if currentModule in sys.modules:
+        importlib.reload(sys.modules[currentModule])
     else:
-        globals()[currentModuleName] = importlib.import_module(currentModuleName)
+        globals()[currentModule] = importlib.import_module(currentModule)
 
 
 # -----------------------------------------------------------------------------
@@ -60,10 +60,10 @@ class SubstanceVariable(bpy.types.PropertyGroup):
 # Update register all methods to this addons
 # -----------------------------------------------------------------------------
 def register():
-    for currentModuleName in modulesFullNames:
-        if currentModuleName in sys.modules:
-            if hasattr(sys.modules[currentModuleName], 'register'):
-                sys.modules[currentModuleName].register()
+    for currentModule in modulesFullNames:
+        if currentModule in sys.modules:
+            if hasattr(sys.modules[currentModule], 'register'):
+                sys.modules[currentModule].register()
 
     bpy.types.Scene.sppfile = bpy.props.StringProperty(
         name="Project Path",
@@ -78,8 +78,8 @@ def register():
 # Delete register
 # -----------------------------------------------------------------------------
 def unregister():
-    for currentModuleName in modulesFullNames:
-        if currentModuleName in sys.modules:
-            if hasattr(sys.modules[currentModuleName], 'unregister'):
-                sys.modules[currentModuleName].unregister()
+    for currentModule in modulesFullNames:
+        if currentModule in sys.modules:
+            if hasattr(sys.modules[currentModule], 'unregister'):
+                sys.modules[currentModule].unregister()
     bpy.utils.unregister_class(SubstanceVariable)
