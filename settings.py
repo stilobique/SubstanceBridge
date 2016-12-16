@@ -35,7 +35,7 @@ class SubstanceSettings(bpy.types.AddonPreferences):
         layout = self.layout
         layout.label(text="All substance path.")
         layout.prop(self, "painterpath")
-        layout.prop(self, "path_batchtools")
+        # layout.prop(self, "path_batchtools")
         # layout.prop(self, "path_designer")
 
 
