@@ -24,9 +24,6 @@ class SubstanceProjectPanel(bpy.types.Panel):
         name = 'Update'
         layout.operator("object.painter_export", name).project = True
 
-        name = 'Texturing List'
-        layout.operator("group.create", name)
-
 
 # -----------------------------------------------------------------------------
 # Texture Set List panel
