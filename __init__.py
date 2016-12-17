@@ -13,7 +13,9 @@ import importlib
 modulesNames = [
     'config.settings',
     'controllers.SubstancePainter',
-    'views.GUI']
+    'views.Baking',
+    'views.SubstanceProject',
+    'views.TextureSetList']
 
 modulesFullNames = []
 for currentModule in modulesNames:
