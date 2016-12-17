@@ -6,7 +6,7 @@ import SubstanceBridge
 
 
 from bpy.props import StringProperty, BoolProperty
-from SubstanceBridge.settings import SubstanceSettings
+from SubstanceBridge.config.settings import SubstanceSettings
 
 # ------------------------------------------------------------------------
 # Create a class for a generic thread, else blender are block.

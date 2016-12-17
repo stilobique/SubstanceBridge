@@ -11,7 +11,7 @@ import sys
 import importlib
 
 modulesNames = [
-    'settings',
+    'config.settings',
     'controllers.SubstancePainter',
     'views.GUI']
 
