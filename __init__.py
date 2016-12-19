@@ -12,10 +12,15 @@ import importlib
 
 modulesNames = [
     'config.settings',
-    'controllers.SubstancePainter',
+    # Models
+    'models.project',
+    # Views
     'views.Baking',
     'views.SubstanceProject',
-    'views.TextureSetList']
+    'views.TextureSetList',
+    # Controllers
+    'controllers.SubstancePainter',
+    ]
 
 modulesFullNames = []
 for currentModule in modulesNames:
@@ -85,3 +90,4 @@ def unregister():
             if hasattr(sys.modules[currentModule], 'unregister'):
                 sys.modules[currentModule].unregister()
     bpy.utils.unregister_class(SubstanceVariable)
+    del bpy.types.Scene.sample_vars

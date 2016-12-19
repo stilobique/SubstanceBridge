@@ -36,7 +36,7 @@ class SubstancePainterThread(threading.Thread):
 # ------------------------------------------------------------------------
 
 
-class Send_to_painter(bpy.types.Operator):
+class SendToPainter(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.painter_export"
     bl_label = "Send mesh to painter export"
@@ -98,9 +98,26 @@ class Send_to_painter(bpy.types.Operator):
         return {'FINISHED'}
 
 
+# ------------------------------------------------------------------------
+# Function Name Project
+# ------------------------------------------------------------------------
+class ProjectName(bpy.types.Operator):
+    """Tooltip"""
+    bl_idname = "object.painter_group"
+    bl_label = "Create a new Painter project"
+
+    def execute(self, context):
+        for tepu in bpy.context.scene.item_project:
+            print(tepu.project_name)
+
+        return {'FINISHED'}
+
+
 def register():
-    bpy.utils.register_class(Send_to_painter)
+    bpy.utils.register_class(SendToPainter)
+    bpy.utils.register_class(ProjectName)
 
 
 def unregister():
-    bpy.utils.unregister_class(Send_to_painter)
+    bpy.utils.unregister_class(SendToPainter)
+    bpy.utils.unregister_class(ProjectName)

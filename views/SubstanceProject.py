@@ -1,5 +1,7 @@
 import bpy
 
+from SubstanceBridge.models.project import ProjectItem
+
 
 # -----------------------------------------------------------------------------
 # Substance Project panel
@@ -13,7 +15,6 @@ class SubstanceProjectPanel(bpy.types.Panel):
     def draw(self, context):
         layout = self.layout
         scn = context.scene
-        # name_prj = SubstanceBridge.initVariable.ProjectName
 
         name = "New Project"
         layout.operator("object.painter_export", name).project = False
@@ -25,6 +26,12 @@ class SubstanceProjectPanel(bpy.types.Panel):
 
         name = 'Update'
         layout.operator("object.painter_export", name).project = True
+
+        scn = context.scene
+
+        row = layout.row(align=True)
+        row.prop(scn, 'itemp_project', text='', icon="GROUP")
+        # layout.operator("object.painter_group", "Last version")
 
 
 def register():
