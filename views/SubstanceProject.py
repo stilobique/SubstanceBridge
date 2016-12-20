@@ -25,8 +25,11 @@ class SubstanceProjectPanel(bpy.types.Panel):
         name = 'Update'
         layout.operator("object.painter_export", name).project = True
 
-        row = layout.row(align=True)
-        row.prop(scn, 'project_name', text='Painter Project', icon="GROUP")
+        layout.label("Debug Test")
+
+        layout.prop(scn, 'project_name', text='Painter Project', icon="GROUP")
+        layout.operator("painter.substance_name", "Debug")
+        layout.prop(scn, 'mesh_substance', text='Mesh Painter', icon="GROUP")
 
 
 def register():
