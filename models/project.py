@@ -11,31 +11,37 @@
 import bpy
 
 
-class ProjectItem(bpy.types.PropertyGroup):
-    project_name = bpy.props.StringProperty(
-        name="Project Name",
-        description="Substance Project Name",
-        default="zozor",
-        )
-    # mesh = bpy.props.StringProperty(
-    #     name="Mesh",
-    #     description="Mesh used with this project",
-    #     )
-    # material = bpy.props.StringProperty(
-    #     name="Material",
-    #     description="Material used as Texture Set List",
-    #     )
+# class ProjectItem(bpy.types.PropertyGroup):
+#     project_name = bpy.props.StringProperty(
+#         name="Project Name",
+#         description="Substance Project Name",
+#         default="zozor",
+#         )
+#     # mesh = bpy.props.StringProperty(
+#     #     name="Mesh",
+#     #     description="Mesh used with this project",
+#     #     )
+#     # material = bpy.props.StringProperty(
+#     #     name="Material",
+#     #     description="Material used as Texture Set List",
+#     #     )
 
-    scn = bpy.context.scene
+#     # scn = bpy.context.scene
+#     # scn['project_name'] = "Painter Project"
+
+def initSceneSubstance(scn):
+    bpy.types.Scene.project_name = StringProperty(
+        name="Project")
     scn['project_name'] = "Painter Project"
+
+    return
 
 
 def register():
-    bpy.utils.register_class(ProjectItem)
-
-    bpy.types.Scene.item_project = \
-        bpy.props.CollectionProperty(type=ProjectItem)
+    # Déclaration variable scene.
+    bpy.types.Scene.project_name = bpy.props.StringProperty(default="default")
 
 
 def unregister():
-    bpy.utils.unregister_class(ProjectItem)
+    # Suppression des variables unasable.
+    del bpy.types.Scene.project_name

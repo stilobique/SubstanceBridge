@@ -101,23 +101,23 @@ class SendToPainter(bpy.types.Operator):
 # ------------------------------------------------------------------------
 # Function Name Project
 # ------------------------------------------------------------------------
-class ProjectName(bpy.types.Operator):
-    """Tooltip"""
-    bl_idname = "object.painter_group"
-    bl_label = "Create a new Painter project"
+# class ProjectName(bpy.types.Operator):
+#     """Tooltip"""
+#     bl_idname = "object.painter_group"
+#     bl_label = "Create a new Painter project"
 
-    def execute(self, context):
-        for tepu in bpy.context.scene.item_project:
-            print(tepu.project_name)
+#     def execute(self, context):
+#         for tepu in bpy.context.scene.item_project:
+#             print(tepu.project_name)
 
-        return {'FINISHED'}
+#         return {'FINISHED'}
 
 
 def register():
     bpy.utils.register_class(SendToPainter)
-    bpy.utils.register_class(ProjectName)
+    # bpy.utils.register_class(ProjectName)
 
 
 def unregister():
     bpy.utils.unregister_class(SendToPainter)
-    bpy.utils.unregister_class(ProjectName)
+    # bpy.utils.unregister_class(ProjectName)

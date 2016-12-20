@@ -58,10 +58,6 @@ class SubstanceVariable(bpy.types.PropertyGroup):
     mesh_name = 'tmp.obj'
     tmp_mesh = tmp_folder + mesh_name
 
-    # bpy.types.Scene.ProjectName = bpy.props.StringProperty(
-    #     name="Project")
-    # scn['ProjectName'] = "Painter Project"
-
 
 # -----------------------------------------------------------------------------
 # Update register all methods to this addons
@@ -90,4 +86,3 @@ def unregister():
             if hasattr(sys.modules[currentModule], 'unregister'):
                 sys.modules[currentModule].unregister()
     bpy.utils.unregister_class(SubstanceVariable)
-    del bpy.types.Scene.sample_vars
