@@ -110,8 +110,40 @@ class ProjectName(bpy.types.Operator):
         print("Yopla Debug")
 
         scn = context.scene
+        slct_obj = bpy.context.selected_objects
 
-        print(scn.project_name)
+        for obj in slct_obj:
+            print(obj.name)
+
+            obj['substance_project'] = scn.project_name
+
+        # print(scn.project_name)
+
+        return {'FINISHED'}
+
+
+# ------------------------------------------------------------------------
+# Function Selected Project
+# ------------------------------------------------------------------------
+class SelectedProject(bpy.types.Operator):
+    """Tooltip"""
+    bl_idname = "painter.selected_project"
+    bl_label = "Selected mesh with this project"
+
+    def execute(self, context):
+        scn = context.scene
+        slct_obj = bpy.context.selected_objects
+
+        for obj in slct_obj:
+            name_obj = bpy.data.objects[obj.name]
+            name_prj = bpy.data.objects[obj.name]['substance_project']
+
+            if hasattr(name_obj, 'substance_project'):
+                for obj in name_prj:
+                    print("Object ", name_obj.name, ", in project ", name_prj)
+
+            else:
+                print("Retour negatif")
 
         return {'FINISHED'}
 
@@ -119,8 +151,10 @@ class ProjectName(bpy.types.Operator):
 def register():
     bpy.utils.register_class(SendToPainter)
     bpy.utils.register_class(ProjectName)
+    bpy.utils.register_class(SelectedProject)
 
 
 def unregister():
     bpy.utils.unregister_class(SendToPainter)
     bpy.utils.unregister_class(ProjectName)
+    bpy.utils.unregister_class(SelectedProject)

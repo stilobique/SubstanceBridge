@@ -25,11 +25,29 @@ class SubstanceProjectPanel(bpy.types.Panel):
         name = 'Update'
         layout.operator("object.painter_export", name).project = True
 
+        # --------------------------------------------------------------------
+        # Substance Project panel
+        # --------------------------------------------------------------------
+
         layout.label("Debug Test")
 
-        layout.prop(scn, 'project_name', text='Painter Project', icon="GROUP")
-        layout.operator("painter.substance_name", "Debug")
-        layout.prop(scn, 'mesh_substance', text='Mesh Painter', icon="GROUP")
+        row = layout.row(align=True)
+        icon = "GROUP"
+        row.prop(scn, 'project_name', text='Painter Project', icon=icon)
+        icon = "ZOOMIN"
+        row.operator("painter.substance_name", text="", icon=icon)
+        icon = "RESTRICT_SELECT_OFF"
+        row.operator("painter.selected_project", text="", icon=icon)
+
+        all_obj = bpy.data.objects
+
+        # for obj in all_obj:
+        #     prj = bpy.data.objects[obj.name]['substance_project']
+            # if prj:
+            #     layout.label(obj.name)
+
+            # else:
+            #     layout.label("no subs")
 
 
 def register():
