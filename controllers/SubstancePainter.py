@@ -138,7 +138,7 @@ class SelectedProject(bpy.types.Operator):
             name_obj = bpy.data.objects[obj.name]
             name_prj = bpy.data.objects[obj.name]['substance_project']
 
-            if hasattr(name_obj, 'substance_project'):
+            if hasattr(name_obj.name, 'substance_project'):
                 for obj in name_prj:
                     print("Object ", name_obj.name, ", in project ", name_prj)
 
