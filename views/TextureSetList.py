@@ -12,6 +12,10 @@ class TextureSetListPanel(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
+        obj = context.object
+
+        # Materials from selected Obj.
+        layout.prop(obj, "active_material", text="")
 
         name = "Add a Set"
         layout.operator("object.painter_export", name).project = False

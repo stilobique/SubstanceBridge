@@ -101,7 +101,7 @@ class SendToPainter(bpy.types.Operator):
 # ------------------------------------------------------------------------
 # Function Name Project
 # ------------------------------------------------------------------------
-class ProjectName(bpy.types.Operator):
+class CreateSubstanceProject(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "painter.substance_name"
     bl_label = "Create a new Substance Painter project"
@@ -111,7 +111,20 @@ class ProjectName(bpy.types.Operator):
         slct_obj = bpy.context.selected_objects
 
         for obj in slct_obj:
+            # Add attribute for all mesh selected
             obj['substance_project'] = scn.project_name
+
+            # Add a materials basic.
+            base_mat = bpy.data.materials.get(scn.project_name)
+            if base_mat is None:
+                base_mat = base_mat = bpy.data.materials.new(scn.project_name)
+
+            # Asign materials to all object selected
+            if obj.data.materials:
+                obj.data.materials[0] = base_mat
+
+            else:
+                obj.data.materials.append(base_mat)
 
         return {'FINISHED'}
 
@@ -149,11 +162,11 @@ class SelectedProject(bpy.types.Operator):
 
 def register():
     bpy.utils.register_class(SendToPainter)
-    bpy.utils.register_class(ProjectName)
+    bpy.utils.register_class(CreateSubstanceProject)
     bpy.utils.register_class(SelectedProject)
 
 
 def unregister():
     bpy.utils.unregister_class(SendToPainter)
-    bpy.utils.unregister_class(ProjectName)
+    bpy.utils.unregister_class(CreateSubstanceProject)
     bpy.utils.unregister_class(SelectedProject)

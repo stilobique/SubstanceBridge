@@ -4,8 +4,8 @@ import bpy
 # -----------------------------------------------------------------------------
 # Substance Project panel
 # -----------------------------------------------------------------------------
-class SubstanceProjectPanel(bpy.types.Panel):
-    bl_label = "Substance Project"
+class DebugPanel(bpy.types.Panel):
+    bl_label = "Debug"
     bl_space_type = "VIEW_3D"
     bl_region_type = "TOOLS"
     bl_category = "Substances"
@@ -14,28 +14,28 @@ class SubstanceProjectPanel(bpy.types.Panel):
         layout = self.layout
         scn = context.scene
 
-        layout.label("Project Name")
         row = layout.row(align=True)
         icon = "GROUP"
-        row.prop(scn, 'project_name', text="", icon=icon)
+        row.prop(scn, 'project_name', text='Painter Project', icon=icon)
         icon = "ZOOMIN"
         row.operator("painter.substance_name", text="", icon=icon)
         icon = "RESTRICT_SELECT_OFF"
         row.operator("painter.selected_project", text="", icon=icon)
 
-        name = "New Project"
-        layout.operator("object.painter_export", name).project = False
+        layout.label("Project Name in this file")
 
-        type_file = 'sppfile'
-        layout.prop(context.scene, type_file, text="")
+        all_obj = bpy.data.objects
 
-        name = 'Update'
-        layout.operator("object.painter_export", name).project = True
+        for obj in all_obj:
+            if obj.get('substance_project') is not None:
+                name_obj = bpy.data.objects[obj.name]
+                name_prj = bpy.data.objects[obj.name]['substance_project']
+                layout.label(name_prj)
 
 
 def register():
-    bpy.utils.register_class(SubstanceProjectPanel)
+    bpy.utils.register_class(DebugPanel)
 
 
 def unregister():
-    bpy.utils.unregister_class(SubstanceProjectPanel)
+    bpy.utils.unregister_class(DebugPanel)
