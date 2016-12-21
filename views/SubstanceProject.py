@@ -41,13 +41,12 @@ class SubstanceProjectPanel(bpy.types.Panel):
 
         all_obj = bpy.data.objects
 
-        # for obj in all_obj:
-        #     prj = bpy.data.objects[obj.name]['substance_project']
-            # if prj:
-            #     layout.label(obj.name)
+        for obj in all_obj:
+            if obj.get('substance_project') is not None:
+                name_obj = bpy.data.objects[obj.name]
+                name_prj = bpy.data.objects[obj.name]['substance_project']
+                layout.label(name_prj)
 
-            # else:
-            #     layout.label("no subs")
 
 
 def register():

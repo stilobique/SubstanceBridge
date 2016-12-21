@@ -104,20 +104,14 @@ class SendToPainter(bpy.types.Operator):
 class ProjectName(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "painter.substance_name"
-    bl_label = "Create a new Painter project"
+    bl_label = "Create a new Substance Painter project"
 
     def execute(self, context):
-        print("Yopla Debug")
-
         scn = context.scene
         slct_obj = bpy.context.selected_objects
 
         for obj in slct_obj:
-            print(obj.name)
-
             obj['substance_project'] = scn.project_name
-
-        # print(scn.project_name)
 
         return {'FINISHED'}
 
@@ -132,18 +126,23 @@ class SelectedProject(bpy.types.Operator):
 
     def execute(self, context):
         scn = context.scene
-        slct_obj = bpy.context.selected_objects
+        all_obj = bpy.data.objects
 
-        for obj in slct_obj:
-            name_obj = bpy.data.objects[obj.name]
-            name_prj = bpy.data.objects[obj.name]['substance_project']
+        for obj in all_obj:
+            if obj.get('substance_project') is not None:
+                name_obj = bpy.data.objects[obj.name]
+                name_prj = bpy.data.objects[obj.name]['substance_project']
 
-            if hasattr(name_obj.name, 'substance_project'):
-                for obj in name_prj:
-                    print("Object ", name_obj.name, ", in project ", name_prj)
+                print("02 - If Substance project")
+                print(name_obj.name, "<>", name_prj)
 
-            else:
-                print("Retour negatif")
+                if name_prj == scn.project_name:
+                    # Selection object with a substance name.
+                    name_obj.select = True
+                    print("03 - Name = field")
+
+                else:
+                    name_obj.select = False
 
         return {'FINISHED'}
 
