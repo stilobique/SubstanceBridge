@@ -1,21 +1,36 @@
 # Project Substance
-#  -> Name
-#  -> Mesh
-#     -> furnitur
-#         -> materials (texture set list)
-#     -> drawers right
-#         -> materials (texture set list)
-#     -> drawers left
-#         -> materials (texture set list)
+#  -> Name -> String
+#  -> Mesh(s)
+#       -> furnitur
+#       -> drawers right
+#       -> drawers left
+#   -> Texture Set List
+#       -> furnitur (material)
+#       -> drawers (material)
 
 import bpy
+
+from bpy.props import *
+
+
+# ----------------------------------------------------------------------------
+# Class for all settings
+# ----------------------------------------------------------------------------
+class SubstanceProjectVariable(bpy.types.PropertyGroup):
+    project_name = StringProperty()
+    mesh_list = []
+    texture_set_list = []
+    painterpath = StringProperty(
+            name="Substance Painter",
+            subtype="FILE_PATH",
+            )
 
 
 def register():
     # Déclaration variable scene.
     bpy.types.Scene.project_name = \
         bpy.props.StringProperty(default="substance project")
-    bpy.types.Scene.mesh_substance = \
+    bpy.types.Scene.texture_set_list = \
         bpy.props.StringProperty(default="default")
 
 
