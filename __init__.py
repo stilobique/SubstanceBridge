@@ -68,13 +68,6 @@ def register():
         if currentModule in sys.modules:
             if hasattr(sys.modules[currentModule], 'register'):
                 sys.modules[currentModule].register()
-
-    bpy.types.Scene.sppfile = bpy.props.StringProperty(
-        name="Project Path",
-        default="",
-        description="Field project path",
-        subtype='FILE_PATH'
-    )
     bpy.utils.register_class(SubstanceVariable)
 
 

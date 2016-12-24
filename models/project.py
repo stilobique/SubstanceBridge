@@ -29,12 +29,19 @@ class SubstanceProjectVariable(bpy.types.PropertyGroup):
 def register():
     # Déclaration variable scene.
     bpy.types.Scene.project_name = \
-        bpy.props.StringProperty(default="substance project")
+        StringProperty(default="substance project")
     bpy.types.Scene.texture_set_list = \
-        bpy.props.StringProperty(default="default")
+        StringProperty(default="default")
+    bpy.types.Scene.sppfile = StringProperty(
+        name="Project Path",
+        default="",
+        description="Field project path",
+        subtype='FILE_PATH'
+    )
 
 
 def unregister():
     # Suppression des variables unasable.
     del bpy.types.Scene.project_name
     del bpy.types.Scene.mesh_substance
+    del bpy.types.Scene.sppfile
