@@ -12,12 +12,14 @@ class TextureSetListPanel(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
+        scn = context.scene
         obj = context.object
 
         # Materials from selected Obj.
         layout.prop(obj, "active_material", text="")
 
         icon = "GROUP"
+        row = layout.row(align=True)
         row.prop(scn, 'project_name', text="", icon=icon)
 
         name = "Add a Set"
