@@ -27,7 +27,7 @@ class CreateSubstanceProject(bpy.types.Operator):
             # Add a materials basic.
             base_mat = bpy.data.materials.get(scn.project_name)
             if base_mat is None:
-                base_mat = base_mat = bpy.data.materials.new(scn.project_name)
+                base_mat = bpy.data.materials.new(scn.project_name)
 
             # Asign materials to all object selected
             if obj.data.materials:
@@ -57,7 +57,8 @@ class SelectedProject(bpy.types.Operator):
                 name_prj = bpy.data.objects[obj.name]['substance_project']
 
                 if name_prj == scn.project_name:
-                    # Selection object with a substance name.
+                    # Selection object with a
+                    #  substance name.
                     name_obj.select = True
 
                 else:
@@ -67,9 +68,9 @@ class SelectedProject(bpy.types.Operator):
 
 
 # ------------------------------------------------------------------------
-# Function unwrap set list
+# Function unwrap set list, use multi object uv edit to be functional.
 # ------------------------------------------------------------------------
-class UVviewsSet(bpy.types.Operator):
+class TextureSetUnwrap(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "painter.uv_set"
     bl_label = "Unwrap mode for a texture set list"
@@ -80,14 +81,43 @@ class UVviewsSet(bpy.types.Operator):
 
         return {'FINISHED'}
 
+# ------------------------------------------------------------------------
+# Function unwrap set list, use multi object uv edit to be functional.
+# ------------------------------------------------------------------------
+class TextureSetAdd(bpy.types.Operator):
+    """Tooltip"""
+    bl_idname = "painter.uv_set_add"
+    bl_label = "Add a new texture set list."
+
+    def execute(self, context):
+        scn = context.scene
+
+        # Add a materials basic.
+        base_mat = bpy.data.materials.get(scn.project_name)
+        # if base_mat is None:
+        #     base_mat = bpy.data.materials.new(scn.project_name)
+        #
+        # # Asign materials to all object selected
+        # if obj.data.materials:
+        #     obj.data.materials[0] = base_mat
+        #
+        # else:
+        #     obj.data.materials.append(base_mat)
+
+        return {'FINISHED'}
+
 
 def register():
     bpy.utils.register_class(CreateSubstanceProject)
     bpy.utils.register_class(SelectedProject)
-    bpy.utils.register_class(UVviewsSet)
+    # Texture Set Functions
+    bpy.utils.register_class(TextureSetUnwrap)
+    bpy.utils.register_class(TextureSetAdd)
 
 
 def unregister():
     bpy.utils.unregister_class(CreateSubstanceProject)
     bpy.utils.unregister_class(SelectedProject)
-    bpy.utils.unregister_class(UVviewsSet)
+    # Texture Set Functions
+    bpy.utils.unregister_class(TextureSetUnwrap)
+    bpy.utils.unregister_class(TextureSetAdd)

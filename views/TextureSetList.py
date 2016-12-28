@@ -14,27 +14,27 @@ class TextureSetListPanel(bpy.types.Panel):
         layout = self.layout
         scn = context.scene
         obj = context.object
+        all_obj = bpy.data.objects
+        all_mat = bpy.data.materials
+        nbr_item = len(all_mat)
 
-        # Materials from selected Obj.
+        for mat in all_mat:
+            name = "Materials : " + mat.name
+            if obj.get('substance_project') is not None:
+                i = 0
+                while i < nbr_item:
+                    layout.label(str(nbr_item))
+                    i = i + 1
+
+        layout.label("Old")
+
         row = layout.row(align=True)
         row.prop(obj, "active_material", text="")
         icon = "GROUP_UVS"
-        row.operator_context = "INVOKE_DEFAULT"
         row.operator("painter.uv_set", text="", icon=icon)
 
-        layout.operator("object.multi_object_uv_edit",
-                             text="Multi Object UV Editing",
-                             icon="IMAGE_RGB")
-
-        row = layout.row(align=True)
-        icon = "GROUP"
-        row.prop(scn, 'project_name', text="", icon=icon)
-
-        icon = "MATERIAL"
-        row.operator("painter.selected_project", text="", icon=icon)
-
         name = "Add a Set"
-        layout.operator("object.painter_export", name).project = False
+        layout.operator("painter.uv_set_add", name)
 
 
 def register():
