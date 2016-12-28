@@ -16,11 +16,18 @@ class TextureSetListPanel(bpy.types.Panel):
         obj = context.object
 
         # Materials from selected Obj.
-        layout.prop(obj, "active_material", text="")
-
-        icon = "GROUP"
         row = layout.row(align=True)
+        row.prop(obj, "active_material", text="")
+        icon = "GROUP_UVS"
+        row.operator("object.multi_object_uv_edit", text="", icon=icon)
+
+
+        row = layout.row(align=True)
+        icon = "GROUP"
         row.prop(scn, 'project_name', text="", icon=icon)
+
+        icon = "MATERIAL"
+        row.operator("painter.selected_project", text="", icon=icon)
 
         name = "Add a Set"
         layout.operator("object.painter_export", name).project = False

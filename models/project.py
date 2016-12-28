@@ -1,5 +1,6 @@
 # Project Substance
 #  -> Name -> String
+#  -> Path .sppfile
 #  -> Mesh(s)
 #       -> furnitur
 #       -> drawers right

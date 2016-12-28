@@ -21,6 +21,7 @@ modulesNames = [
     'views.DebugPanel',
     # Controllers
     'controllers.SubstancePainter',
+    'controllers.SubstanceController',
     ]
 
 modulesFullNames = []
