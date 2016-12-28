@@ -56,13 +56,9 @@ class SelectedProject(bpy.types.Operator):
                 name_obj = bpy.data.objects[obj.name]
                 name_prj = bpy.data.objects[obj.name]['substance_project']
 
-                print("02 - If Substance project")
-                print(name_obj.name, "<>", name_prj)
-
                 if name_prj == scn.project_name:
                     # Selection object with a substance name.
                     name_obj.select = True
-                    print("03 - Name = field")
 
                 else:
                     name_obj.select = False
@@ -70,11 +66,28 @@ class SelectedProject(bpy.types.Operator):
         return {'FINISHED'}
 
 
+# ------------------------------------------------------------------------
+# Function unwrap set list
+# ------------------------------------------------------------------------
+class UVviewsSet(bpy.types.Operator):
+    """Tooltip"""
+    bl_idname = "painter.uv_set"
+    bl_label = "Unwrap mode for a texture set list"
+
+    def execute(self, context):
+        bpy.ops.painter.selected_project()
+        bpy.ops.object.multi_object_uv_edit('INVOKE_DEFAULT')
+
+        return {'FINISHED'}
+
+
 def register():
     bpy.utils.register_class(CreateSubstanceProject)
     bpy.utils.register_class(SelectedProject)
+    bpy.utils.register_class(UVviewsSet)
 
 
 def unregister():
     bpy.utils.unregister_class(CreateSubstanceProject)
     bpy.utils.unregister_class(SelectedProject)
+    bpy.utils.unregister_class(UVviewsSet)

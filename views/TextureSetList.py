@@ -19,8 +19,12 @@ class TextureSetListPanel(bpy.types.Panel):
         row = layout.row(align=True)
         row.prop(obj, "active_material", text="")
         icon = "GROUP_UVS"
-        row.operator("object.multi_object_uv_edit", text="", icon=icon)
+        row.operator_context = "INVOKE_DEFAULT"
+        row.operator("painter.uv_set", text="", icon=icon)
 
+        layout.operator("object.multi_object_uv_edit",
+                             text="Multi Object UV Editing",
+                             icon="IMAGE_RGB")
 
         row = layout.row(align=True)
         icon = "GROUP"
