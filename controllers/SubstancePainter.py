@@ -49,9 +49,7 @@ class SendToPainter(bpy.types.Operator):
     bl_label = "Send mesh to painter export"
 
     project = BoolProperty(name="It's a new project.")
-
     painter = StringProperty(name="Path Substance Painter")
-
     update = BoolProperty(
         default=False,
         name="Variable de test, update or not"
