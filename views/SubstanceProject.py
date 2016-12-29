@@ -26,8 +26,9 @@ class SubstanceProjectPanel(bpy.types.Panel):
         name = "New Project"
         layout.operator("object.painter_export", name).project = False
 
-        type_file = 'sppfile'
-        layout.prop(context.scene, type_file, text="")
+        type_file = scn.project_settings
+        for file in type_file:
+            layout.prop(scn, file.path_sppfile, text="")
 
         name = 'Update'
         layout.operator("object.painter_export", name).project = True

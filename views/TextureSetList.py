@@ -14,17 +14,9 @@ class TextureSetListPanel(bpy.types.Panel):
         layout = self.layout
         scn = context.scene
         obj = context.object
-        all_obj = bpy.data.objects
-        all_mat = bpy.data.materials
-        nbr_item = len(all_mat)
 
-        for mat in all_mat:
-            name = "Materials : " + mat.name
-            if obj.get('substance_project') is not None:
-                i = 0
-                while i < nbr_item:
-                    layout.label(str(nbr_item))
-                    i = i + 1
+        for nbr in scn.tx_set_settings:
+            layout.label(str(nbr.id))
 
         layout.label("Old")
 

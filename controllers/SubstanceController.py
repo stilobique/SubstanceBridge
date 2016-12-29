@@ -8,9 +8,9 @@
 
 import bpy
 
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Function Name Project
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 class CreateSubstanceProject(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "painter.substance_name"
@@ -36,12 +36,28 @@ class CreateSubstanceProject(bpy.types.Operator):
             else:
                 obj.data.materials.append(base_mat)
 
+            # Add a Texture Set List setup
+            # Check if an texture are already exist
+            if scn.tx_set_settings.get('id') is not None:
+                print("New Set")
+            else:
+                print("pas d'id 0")
+                tx_set_list = bpy.context.scene.tx_set_settings.add()
+                tx_set_list.id = 0
+                tx_set_list.name = scn.project_name
+
+                list_name = []
+                for obj in slct_obj:
+                    list_name.append(obj.name)
+
+                tx_set_list.meshs = ":".join(list_name)
+
         return {'FINISHED'}
 
 
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Function Selected Project
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 class SelectedProject(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "painter.selected_project"
@@ -67,9 +83,9 @@ class SelectedProject(bpy.types.Operator):
         return {'FINISHED'}
 
 
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Function unwrap set list, use multi object uv edit to be functional.
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 class TextureSetUnwrap(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "painter.uv_set"
@@ -81,9 +97,9 @@ class TextureSetUnwrap(bpy.types.Operator):
 
         return {'FINISHED'}
 
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Function unwrap set list, use multi object uv edit to be functional.
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 class TextureSetAdd(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "painter.uv_set_add"
@@ -91,18 +107,10 @@ class TextureSetAdd(bpy.types.Operator):
 
     def execute(self, context):
         scn = context.scene
+        set = scn.tx_set_settings
 
-        # Add a materials basic.
-        base_mat = bpy.data.materials.get(scn.project_name)
-        # if base_mat is None:
-        #     base_mat = bpy.data.materials.new(scn.project_name)
-        #
-        # # Asign materials to all object selected
-        # if obj.data.materials:
-        #     obj.data.materials[0] = base_mat
-        #
-        # else:
-        #     obj.data.materials.append(base_mat)
+        for nbr in enumerate(set):
+            print(nbr)
 
         return {'FINISHED'}
 
