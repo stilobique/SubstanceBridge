@@ -19,30 +19,44 @@ from bpy.props import *
 # ----------------------------------------------------------------------------
 class SubstanceProjectVariable(bpy.types.PropertyGroup):
     project_name = StringProperty()
-    mesh_list = []
-    texture_set_list = []
-    painterpath = StringProperty(
-            name="Substance Painter",
-            subtype="FILE_PATH",
-            )
 
+
+# ----------------------------------------------------------------------------
+# Texture Set List Collection
+# ----------------------------------------------------------------------------
+class TextureSetListItems(bpy.types.PropertyGroup):
+    id = IntProperty(
+        name="ID Texture Set List",
+        default=0,
+        )
+    name = StringProperty(
+        name="Name Set",
+        default="Default",
+        )
+    meshs = StringProperty(
+        name="Name Set",
+        default="Default",
+        )
 
 def register():
-    # Déclaration variable scene.
+    # Nominate project variable
     bpy.types.Scene.project_name = \
         StringProperty(default="substance project")
-    bpy.types.Scene.texture_set_list = \
-        StringProperty(default="default")
     bpy.types.Scene.sppfile = StringProperty(
         name="Project Path",
         default="",
         description="Field project path",
         subtype='FILE_PATH'
     )
+    # Nominate texture set variable
+    bpy.utils.register_class(TextureSetListItems)
+    bpy.types.Scene.tx_set_settings = \
+        bpy.props.CollectionProperty(type=TextureSetListItems)
 
 
 def unregister():
-    # Suppression des variables unasable.
+    # Nominate project variable.
     del bpy.types.Scene.project_name
-    del bpy.types.Scene.mesh_substance
     del bpy.types.Scene.sppfile
+    # Nominate texture set variable
+    del bpy.types.Scene.tx_set_list
