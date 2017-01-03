@@ -8,6 +8,7 @@
 
 import bpy
 
+
 # -----------------------------------------------------------------------------
 # Function Name Project
 # -----------------------------------------------------------------------------
@@ -19,15 +20,16 @@ class CreateSubstanceProject(bpy.types.Operator):
     def execute(self, context):
         scn = context.scene
         slct_obj = bpy.context.selected_objects
+        project_name = scn.sbs_project_settings.prj_name
 
         for obj in slct_obj:
             # Add attribute for all mesh selected
-            obj['substance_project'] = scn.project_name
+            obj['substance_project'] = project_name
 
             # Add a materials basic.
-            base_mat = bpy.data.materials.get(scn.project_name)
+            base_mat = bpy.data.materials.get(project_name)
             if base_mat is None:
-                base_mat = bpy.data.materials.new(scn.project_name)
+                base_mat = bpy.data.materials.new(project_name)
 
             # Asign materials to all object selected
             if obj.data.materials:
@@ -36,21 +38,23 @@ class CreateSubstanceProject(bpy.types.Operator):
             else:
                 obj.data.materials.append(base_mat)
 
-            # Add a Texture Set List setup
-            # Check if an texture are already exist
-            if scn.tx_set_settings.get('id') is not None:
-                print("New Set")
-            else:
-                print("pas d'id 0")
-                tx_set_list = bpy.context.scene.tx_set_settings.add()
-                tx_set_list.id = 0
-                tx_set_list.name = scn.project_name
+            # # Add a Texture Set List setup
+            # # Check if an texture are already exist
+            # if scn.tx_set_settings.get('id') is not None:
+            #     print("New Set")
+            # else:
+            #     print("pas d'id 0")
+            #     tx_set_list = bpy.context.scene.tx_set_settings.add()
+            #     tx_set_list.id = 0
+            #     tx_set_list.name = scn.sbs_project_name
+            #
+            #     list_name = []
+            #     for obj in slct_obj:
+            #         list_name.append(obj.name)
+            #
+            #     tx_set_list.meshs = ":".join(list_name)
 
-                list_name = []
-                for obj in slct_obj:
-                    list_name.append(obj.name)
-
-                tx_set_list.meshs = ":".join(list_name)
+        print(project_name)
 
         return {'FINISHED'}
 
@@ -72,7 +76,7 @@ class SelectedProject(bpy.types.Operator):
                 name_obj = bpy.data.objects[obj.name]
                 name_prj = bpy.data.objects[obj.name]['substance_project']
 
-                if name_prj == scn.project_name:
+                if name_prj == scn.sbs_project_name:
                     # Selection object with a
                     #  substance name.
                     name_obj.select = True
