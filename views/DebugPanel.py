@@ -14,8 +14,10 @@ class DebugShow(bpy.types.Operator):
 
         # Substance Variable
         sbs_name = scn.sbs_project_settings.prj_name
+        sbs_path_spp = scn.sbs_project_settings.path_spp
 
-        print(scn)
+        print("Substance Project : ", sbs_name)
+        print("Link spp file : ", sbs_path_spp)
 
         return {'FINISHED'}
 

@@ -13,6 +13,7 @@ class SubstanceProjectPanel(bpy.types.Panel):
     def draw(self, context):
         layout = self.layout
         scn = context.scene
+        obj = context.object
 
         layout.label("Project Name")
         row = layout.row(align=True)
@@ -23,11 +24,23 @@ class SubstanceProjectPanel(bpy.types.Panel):
         icon = "RESTRICT_SELECT_OFF"
         row.operator("painter.selected_project", text="", icon=icon)
 
-        name = "New Project"
-        layout.operator("object.painter_export", name).project = False
+        if obj.get("substance_project") is None:
+            # Not Substance Project in this blend-file
+            layout.label("Create a New Project")
 
-        name = 'Update'
-        layout.operator("object.painter_export", name).project = True
+        else:
+            name = "Export New Project"
+            layout.operator("object.painter_export", name).project = False
+
+            layout.separator()
+
+            data = scn.sbs_project_settings
+            layout.prop(data, 'path_spp', text="")
+
+            name = 'Export Update'
+            icon = 'FILE_REFRESH'
+            ops = "object.painter_export"
+            layout.operator(ops, name, icon=icon).project = True
 
 
 def register():

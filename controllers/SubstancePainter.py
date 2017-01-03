@@ -13,7 +13,6 @@ import SubstanceBridge
 
 
 from bpy.props import StringProperty, BoolProperty
-from SubstanceBridge.config.settings import SubstanceSettings
 
 # ------------------------------------------------------------------------
 # Create a class for a generic thread, else blender are block.
@@ -80,6 +79,7 @@ class SendToPainter(bpy.types.Operator):
                     if self.project is True:
                         self.path_project = path_sppfile
 
+    # Il ne s'agit pas d'un nouveau projet, re-export
                     else:
                         self.path_project = ""
 
