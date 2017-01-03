@@ -16,8 +16,8 @@ class SubstanceProjectPanel(bpy.types.Panel):
 
         layout.label("Project Name")
         row = layout.row(align=True)
-        icon = "GROUP"
-        row.prop(scn, 'project_name', text="", icon=icon)
+        data = scn.sbs_project_settings
+        row.prop(data, 'prj_name', text="")
         icon = "ZOOMIN"
         row.operator("painter.substance_name", text="", icon=icon)
         icon = "RESTRICT_SELECT_OFF"
@@ -25,10 +25,6 @@ class SubstanceProjectPanel(bpy.types.Panel):
 
         name = "New Project"
         layout.operator("object.painter_export", name).project = False
-
-        type_file = scn.project_settings
-        for file in type_file:
-            layout.prop(scn, file.path_sppfile, text="")
 
         name = 'Update'
         layout.operator("object.painter_export", name).project = True

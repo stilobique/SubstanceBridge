@@ -12,14 +12,9 @@ class TextureSetListPanel(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
-        scn = context.scene
         obj = context.object
 
-        for nbr in scn.tx_set_settings:
-            layout.label(str(nbr.id))
-
-        layout.label("Old")
-
+        layout.label("Texture Set List")
         row = layout.row(align=True)
         row.prop(obj, "active_material", text="")
         icon = "GROUP_UVS"
