@@ -11,7 +11,6 @@ import subprocess
 import os
 import SubstanceBridge
 
-
 from bpy.props import StringProperty, BoolProperty
 
 # ------------------------------------------------------------------------
@@ -27,7 +26,7 @@ class SubstancePainterThread(threading.Thread):
         self.path_project = path_project
 
     def run(self):
-        mesh = SubstanceBridge.SubstanceVariable.tmp_mesh
+        mesh = SubstanceBridge.models.project.SubstanceVariable.tmp_mesh
         if self.path_project == "":
             popen = subprocess.call([self.path_painter, '--mesh', mesh])
 
@@ -58,7 +57,7 @@ class SendToPainter(bpy.types.Operator):
 
     def execute(self, context):
         obj = bpy.context.active_object
-        mesh = SubstanceBridge.SubstanceVariable.tmp_mesh
+        mesh = SubstanceBridge.models.project.SubstanceVariable.tmp_mesh
 
         user_preferences = bpy.context.user_preferences
         addon_prefs = user_preferences.addons["SubstanceBridge"].preferences
@@ -74,12 +73,12 @@ class SendToPainter(bpy.types.Operator):
 
                 # Verification si le soft est configuré dans le path
                 if self.painter:
-                    path_sppfile = os.path.abspath(bpy.context.scene.sppfile)
+                    scn = context.scene
+                    path_sppfile = scn.sbs_project_settings.path_spp
                     # Test If it's a new project.
                     if self.project is True:
                         self.path_project = path_sppfile
 
-    # Il ne s'agit pas d'un nouveau projet, re-export
                     else:
                         self.path_project = ""
 

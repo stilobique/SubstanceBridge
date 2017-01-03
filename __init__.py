@@ -52,16 +52,6 @@ bl_info = {
 
 
 # -----------------------------------------------------------------------------
-# Settings for this addons
-# -----------------------------------------------------------------------------
-class SubstanceVariable(bpy.types.PropertyGroup):
-    # Temporary Folder and obj mesh
-    tmp_folder = bpy.context.user_preferences.filepaths.temporary_directory
-    mesh_name = 'tmp.obj'
-    tmp_mesh = tmp_folder + mesh_name
-
-
-# -----------------------------------------------------------------------------
 # Update register all methods to this addons
 # -----------------------------------------------------------------------------
 def register():
@@ -69,7 +59,6 @@ def register():
         if currentModule in sys.modules:
             if hasattr(sys.modules[currentModule], 'register'):
                 sys.modules[currentModule].register()
-    bpy.utils.register_class(SubstanceVariable)
 
 
 # -----------------------------------------------------------------------------
@@ -80,4 +69,3 @@ def unregister():
         if currentModule in sys.modules:
             if hasattr(sys.modules[currentModule], 'unregister'):
                 sys.modules[currentModule].unregister()
-    bpy.utils.unregister_class(SubstanceVariable)

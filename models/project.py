@@ -3,6 +3,16 @@ import bpy
 from bpy.props import *
 
 
+# -----------------------------------------------------------------------------
+# Settings for this addons
+# -----------------------------------------------------------------------------
+class SubstanceVariable(bpy.types.PropertyGroup):
+    # Temporary Folder and obj mesh
+    tmp_folder = bpy.context.user_preferences.filepaths.temporary_directory
+    mesh_name = 'tmp.obj'
+    tmp_mesh = tmp_folder + mesh_name
+
+
 # ----------------------------------------------------------------------------
 # Class for all settings
 # ----------------------------------------------------------------------------
@@ -49,6 +59,7 @@ class TextureSetListItems(bpy.types.PropertyGroup):
 
 def register():
     bpy.utils.register_class(SubstanceProjectItems)
+    bpy.utils.register_class(SubstanceVariable)
     bpy.types.Scene.sbs_project_settings = \
         bpy.props.PointerProperty(type=SubstanceProjectItems)
     # Nominate project variable
@@ -65,6 +76,7 @@ def register():
 
 
 def unregister():
+    bpy.utils.unregister_class(SubstanceVariable)
     # Nominate project variable
     del bpy.types.Scene.sbs_project_settings
     del bpy.types.Scene.sppfile

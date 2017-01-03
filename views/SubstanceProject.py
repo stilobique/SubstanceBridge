@@ -30,16 +30,14 @@ class SubstanceProjectPanel(bpy.types.Panel):
 
         else:
             name = "Export New Project"
-            layout.operator("object.painter_export", name).project = False
-
-            layout.separator()
+            ops = "object.painter_export"
+            layout.operator(ops, name).project = False
 
             data = scn.sbs_project_settings
             layout.prop(data, 'path_spp', text="")
 
             name = 'Export Update'
             icon = 'FILE_REFRESH'
-            ops = "object.painter_export"
             layout.operator(ops, name, icon=icon).project = True
 
 
