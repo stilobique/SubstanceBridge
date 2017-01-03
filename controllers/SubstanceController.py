@@ -22,39 +22,43 @@ class CreateSubstanceProject(bpy.types.Operator):
         slct_obj = bpy.context.selected_objects
         project_name = scn.sbs_project_settings.prj_name
 
+        # Check if this object can be export for Sbs Painter.
         for obj in slct_obj:
-            # Add attribute for all mesh selected
-            obj['substance_project'] = project_name
+            if obj.type == 'MESH':
+                # Add attribute for all mesh selected
+                obj['substance_project'] = project_name
 
-            # Add a materials basic.
-            base_mat = bpy.data.materials.get(project_name)
-            if base_mat is None:
-                base_mat = bpy.data.materials.new(project_name)
+                # Add a materials basic.
+                base_mat = bpy.data.materials.get(project_name)
+                if base_mat is None:
+                    base_mat = bpy.data.materials.new(project_name)
 
-            # Asign materials to all object selected
-            if obj.data.materials:
-                obj.data.materials[0] = base_mat
+                # Asign materials to all object selected
+                if obj.data.materials:
+                    obj.data.materials[0] = base_mat
+
+                else:
+                    obj.data.materials.append(base_mat)
+
+                # # Add a Texture Set List setup
+                # # Check if an texture are already exist
+                # if scn.tx_set_settings.get('id') is not None:
+                #     print("New Set")
+                # else:
+                #     print("pas d'id 0")
+                #     tx_set_list = bpy.context.scene.tx_set_settings.add()
+                #     tx_set_list.id = 0
+                #     tx_set_list.name = scn.sbs_project_name
+                #
+                #     list_name = []
+                #     for obj in slct_obj:
+                #         list_name.append(obj.name)
+                #
+                #     tx_set_list.meshs = ":".join(list_name)
 
             else:
-                obj.data.materials.append(base_mat)
-
-            # # Add a Texture Set List setup
-            # # Check if an texture are already exist
-            # if scn.tx_set_settings.get('id') is not None:
-            #     print("New Set")
-            # else:
-            #     print("pas d'id 0")
-            #     tx_set_list = bpy.context.scene.tx_set_settings.add()
-            #     tx_set_list.id = 0
-            #     tx_set_list.name = scn.sbs_project_name
-            #
-            #     list_name = []
-            #     for obj in slct_obj:
-            #         list_name.append(obj.name)
-            #
-            #     tx_set_list.meshs = ":".join(list_name)
-
-        print(project_name)
+                self.report({'WARNING'}, "This object is not a mesh.")
+                return {'CANCELLED'}
 
         return {'FINISHED'}
 
