@@ -41,13 +41,14 @@ for currentModule in modulesFullNames:
 bl_info = {
     "name": "Substance Bridge",
     "author": "stilobique",
-    "version": (0, 3, 1),
+    "version": (0, 4, 1),
     "blender": (2, 78),
     "location": "Tool Shelf > Substance Panel",
     "description": "A simple way to export into substance painter.",
     "warning": "",
-    "wiki_url": "",
-    "category": "3D View"
+    "wiki_url": "https://github.com/stilobique/SubstanceBridge/wiki",
+    "category": "3D View",
+    "tracker_url": "https://github.com/stilobique/SubstanceBridge/issues"
 }
 
 
