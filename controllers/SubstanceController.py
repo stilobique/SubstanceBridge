@@ -10,7 +10,7 @@ import bpy
 
 
 # -----------------------------------------------------------------------------
-# Function Name Project
+# Create a News Substance Project
 # -----------------------------------------------------------------------------
 class CreateSubstanceProject(bpy.types.Operator):
     """Tooltip"""
@@ -74,19 +74,19 @@ class SelectedProject(bpy.types.Operator):
     def execute(self, context):
         scn = context.scene
         all_obj = bpy.data.objects
+        project_name = scn.sbs_project_settings.prj_name
 
         for obj in all_obj:
+            name_obj = bpy.data.objects[obj.name]
             if obj.get('substance_project') is not None:
-                name_obj = bpy.data.objects[obj.name]
                 name_prj = bpy.data.objects[obj.name]['substance_project']
-
-                if name_prj == scn.sbs_project_name:
+                if name_prj == project_name:
                     # Selection object with a
                     #  substance name.
                     name_obj.select = True
 
-                else:
-                    name_obj.select = False
+            else:
+                name_obj.select = False
 
         return {'FINISHED'}
 
@@ -104,6 +104,7 @@ class TextureSetUnwrap(bpy.types.Operator):
         bpy.ops.object.multi_object_uv_edit('INVOKE_DEFAULT')
 
         return {'FINISHED'}
+
 
 # -----------------------------------------------------------------------------
 # Function unwrap set list, use multi object uv edit to be functional.
