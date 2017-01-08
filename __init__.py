@@ -16,9 +16,10 @@ modulesNames = [
     'models.project',
     # Views
     'views.SubstanceProject',
-    'views.TextureSetList',
+    # 'views.TextureSetList',
     'views.Baking',
     'views.DebugPanel',
+    'views.DataView',
     # Controllers
     'controllers.SubstancePainter',
     'controllers.SubstanceController',
