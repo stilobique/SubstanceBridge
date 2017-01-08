@@ -20,18 +20,18 @@ class CreateSubstanceProject(bpy.types.Operator):
     def execute(self, context):
         scn = context.scene
         slct_obj = bpy.context.selected_objects
-        project_name = scn.sbs_project_settings.prj_name
+        sbs_settings = scn.sbs_project_settings
 
         # Check if this object can be export for Sbs Painter.
         for obj in slct_obj:
             if obj.type == 'MESH':
                 # Add attribute for all mesh selected
-                obj['substance_project'] = project_name
+                obj['substance_project'] = sbs_settings.prj_name
 
                 # Add a materials basic.
-                base_mat = bpy.data.materials.get(project_name)
+                base_mat = bpy.data.materials.get(sbs_settings.prj_name)
                 if base_mat is None:
-                    base_mat = bpy.data.materials.new(project_name)
+                    base_mat = bpy.data.materials.new(sbs_settings.prj_name)
 
                 # Asign materials to all object selected
                 if obj.data.materials:
