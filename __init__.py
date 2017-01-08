@@ -18,11 +18,11 @@ modulesNames = [
     'views.SubstanceProject',
     # 'views.TextureSetList',
     'views.Baking',
-    'views.DebugPanel',
     'views.DataView',
     # Controllers
     'controllers.SubstancePainter',
     'controllers.SubstanceController',
+    'controllers.DebugOps',
     ]
 
 modulesFullNames = []
