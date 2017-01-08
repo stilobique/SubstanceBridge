@@ -22,6 +22,7 @@ class SubstanceData(bpy.types.Panel):
 
         # Substance Info save in object and data mesh.
         if ob.get('substance_project') is not None:
+            layout.label("Sbs Project Name : ")
             layout.label(ob['substance_project'])
 
         # Debug Option
