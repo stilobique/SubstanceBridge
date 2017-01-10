@@ -14,11 +14,20 @@ class SubstanceProjectPanel(bpy.types.Panel):
         layout = self.layout
         scn = context.scene
         obj = context.object
+        act = context.active_object
 
         layout.label("Project Name")
         row = layout.row(align=True)
+        # Check if this object as an Sbs Project.
         data = scn.sbs_project_settings
-        row.prop(data, 'prj_name', text="")
+        if act.get('substance_project') is not None:
+            sbs_obj = bpy.context.active_object['substance_project']
+            scene_name = bpy.context.scene.name
+            scene = bpy.data.scenes[scene_name]['sbs_project_settings']
+            scene['prj_name'] = sbs_obj
+
+        row.prop(data, 'prj_name', text="new")
+
         icon = "ZOOMIN"
         row.operator("painter.substance_name", text="", icon=icon)
         icon = "RESTRICT_SELECT_OFF"
