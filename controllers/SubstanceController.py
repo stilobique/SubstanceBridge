@@ -85,7 +85,7 @@ class SelectedProject(bpy.types.Operator):
 # -----------------------------------------------------------------------------
 class RemovefromProject(bpy.types.Operator):
     """Tooltip"""
-    bl_idname = "painter.selected_project"
+    bl_idname = "painter.remove_from_project"
     bl_label = "Selected mesh with this project"
 
     def execute(self, context):

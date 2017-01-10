@@ -14,7 +14,6 @@ class TextureSetListPanel(bpy.types.Panel):
         layout = self.layout
         obj = context.object
 
-        layout.label("Texture Set List")
         row = layout.row(align=True)
         row.prop(obj, "active_material", text="")
         icon = "GROUP_UVS"

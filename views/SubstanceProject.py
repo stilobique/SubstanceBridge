@@ -34,7 +34,7 @@ class SubstanceProjectPanel(bpy.types.Panel):
         icon = "RESTRICT_SELECT_OFF"
         row.operator("painter.selected_project", text="", icon=icon)
         icon = "PANEL_CLOSE"
-        row.operator("painter.selected_project", text="", icon=icon)
+        row.operator("painter.remove_from_project", text="", icon=icon)
 
         if obj.get("substance_project") is None:
             # Not Substance Project in this blend-file
