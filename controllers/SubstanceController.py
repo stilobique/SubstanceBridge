@@ -45,22 +45,6 @@ class CreateSubstanceProject(bpy.types.Operator):
                 else:
                     obj.data.materials.append(base_mat)
 
-                # # Add a Texture Set List setup
-                # # Check if an texture are already exist
-                # if scn.tx_set_settings.get('id') is not None:
-                #     print("New Set")
-                # else:
-                #     print("pas d'id 0")
-                #     tx_set_list = bpy.context.scene.tx_set_settings.add()
-                #     tx_set_list.id = 0
-                #     tx_set_list.name = scn.sbs_project_name
-                #
-                #     list_name = []
-                #     for obj in slct_obj:
-                #         list_name.append(obj.name)
-                #
-                #     tx_set_list.meshs = ":".join(list_name)
-
             else:
                 self.report({'WARNING'}, "This object is not a mesh.")
                 return {'CANCELLED'}
@@ -92,6 +76,22 @@ class SelectedProject(bpy.types.Operator):
                     name_obj.select = False
             else:
                 name_obj.select = False
+
+        return {'FINISHED'}
+
+
+# -----------------------------------------------------------------------------
+# Function Remove form an Project
+# -----------------------------------------------------------------------------
+class RemovefromProject(bpy.types.Operator):
+    """Tooltip"""
+    bl_idname = "painter.selected_project"
+    bl_label = "Selected mesh with this project"
+
+    def execute(self, context):
+        obj = context.object
+
+        del obj['substance_project']
 
         return {'FINISHED'}
 
@@ -150,6 +150,7 @@ class TextureSetAdd(bpy.types.Operator):
 def register():
     bpy.utils.register_class(CreateSubstanceProject)
     bpy.utils.register_class(SelectedProject)
+    bpy.utils.register_class(RemovefromProject)
     # Texture Set Functions
     bpy.utils.register_class(TextureSetUnwrap)
     bpy.utils.register_class(TextureSetAdd)
@@ -158,6 +159,7 @@ def register():
 def unregister():
     bpy.utils.unregister_class(CreateSubstanceProject)
     bpy.utils.unregister_class(SelectedProject)
+    bpy.utils.unregister_class(RemovefromProject)
     # Texture Set Functions
     bpy.utils.unregister_class(TextureSetUnwrap)
     bpy.utils.unregister_class(TextureSetAdd)
