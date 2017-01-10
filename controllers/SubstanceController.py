@@ -28,6 +28,11 @@ class CreateSubstanceProject(bpy.types.Operator):
                 # Add attribute for all mesh selected
                 obj['substance_project'] = sbs_settings.prj_name
 
+                # Clear Material slot
+                nbr = len(bpy.data.objects[obj.name].material_slots)
+                for i in range(nbr):
+                    bpy.ops.object.material_slot_remove()
+
                 # Add a materials basic.
                 base_mat = bpy.data.materials.get(sbs_settings.prj_name)
                 if base_mat is None:
@@ -81,10 +86,10 @@ class SelectedProject(bpy.types.Operator):
             if obj.get('substance_project') is not None:
                 name_prj = bpy.data.objects[obj.name]['substance_project']
                 if name_prj == project_name:
-                    # Selection object with a
-                    #  substance name.
                     name_obj.select = True
 
+                else:
+                    name_obj.select = False
             else:
                 name_obj.select = False
 
@@ -117,9 +122,27 @@ class TextureSetAdd(bpy.types.Operator):
     def execute(self, context):
         scn = context.scene
         set = scn.tx_set_settings
+        all_obj = bpy.data.objects
+        slct_obj = bpy.context.selected_objects
+        project_name = scn.sbs_project_settings.prj_name
 
-        for nbr in enumerate(set):
-            print(nbr)
+        for obj in slct_obj:
+            if obj.get('substance_project') is not None:
+                name_prj = bpy.data.objects[obj.name]['substance_project']
+                if name_prj == project_name:
+                    nbr = len(bpy.data.objects[obj.name].material_slots)
+                    print(nbr)
+                    for objs in all_obj:
+
+                        bpy.ops.object.material_slot_add()
+                        bpy.ops.material.new()
+
+            else:
+                self.report({'WARNING'}, "This object ase no Substance.")
+                return {'CANCELLED'}
+
+        # for nbr in enumerate(set):
+        #     print(nbr)
 
         return {'FINISHED'}
 
