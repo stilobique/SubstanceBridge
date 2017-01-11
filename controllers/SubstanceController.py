@@ -121,28 +121,21 @@ class TextureSetAdd(bpy.types.Operator):
 
     def execute(self, context):
         scn = context.scene
-        set = scn.tx_set_settings
         all_obj = bpy.data.objects
-        slct_obj = bpy.context.selected_objects
         project_name = scn.sbs_project_settings.prj_name
+        sbs_settings = scn.sbs_project_settings
 
-        for obj in slct_obj:
+        for obj in all_obj:
+            name_obj = bpy.data.objects[obj.name]
             if obj.get('substance_project') is not None:
                 name_prj = bpy.data.objects[obj.name]['substance_project']
                 if name_prj == project_name:
                     nbr = len(bpy.data.objects[obj.name].material_slots)
-                    print(nbr)
-                    for objs in all_obj:
 
-                        bpy.ops.object.material_slot_add()
-                        bpy.ops.material.new()
-
-            else:
-                self.report({'WARNING'}, "This object ase no Substance.")
-                return {'CANCELLED'}
-
-        # for nbr in enumerate(set):
-        #     print(nbr)
+                    name_mat = project_name
+                    name_mat = name_mat + "_" + str(nbr)
+                    new_mat = bpy.data.materials.new(name_mat)
+                    obj.data.materials.append(new_mat)
 
         return {'FINISHED'}
 
