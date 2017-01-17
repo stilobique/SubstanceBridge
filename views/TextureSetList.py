@@ -13,11 +13,24 @@ class TextureSetListPanel(bpy.types.Panel):
     def draw(self, context):
         layout = self.layout
         obj = context.object
+        act_obj = context.active_object
 
-        row = layout.row(align=True)
-        row.prop(obj, "active_material", text="")
-        icon = "GROUP_UVS"
-        row.operator("painter.uv_set", text="", icon=icon)
+        for mat in obj.material_slots:
+            shader = bpy.data.materials
+            row = layout.row(align=True)
+
+            icon = "MATERIAL"
+            row.prop(shader[mat.name], "name", text="", icon=icon)
+            icon = "GROUP_UVS"
+            row.operator("painter.uv_set", text="", icon=icon)
+
+            liste = act_obj.material_slots
+            index = liste.find(mat.name)
+
+            if index > 0:
+                icon = "SPACE3"
+                ops = "painter.uv_set_on"
+                row.operator(ops, text="", icon=icon).index = index
 
         name = "Add a Set"
         layout.operator("painter.uv_set_add", name)

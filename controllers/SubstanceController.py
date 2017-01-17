@@ -7,6 +7,7 @@
 # -----------------------------------------------------------------------------
 
 import bpy
+from bpy.props import IntProperty
 
 
 # -----------------------------------------------------------------------------
@@ -112,7 +113,7 @@ class TextureSetUnwrap(bpy.types.Operator):
 
 
 # -----------------------------------------------------------------------------
-# Function unwrap set list, use multi object uv edit to be functional.
+# Function to add a new set list.
 # -----------------------------------------------------------------------------
 class TextureSetAdd(bpy.types.Operator):
     """Tooltip"""
@@ -122,20 +123,52 @@ class TextureSetAdd(bpy.types.Operator):
     def execute(self, context):
         scn = context.scene
         all_obj = bpy.data.objects
+        slc_obj = bpy.context.active_object
         project_name = scn.sbs_project_settings.prj_name
         sbs_settings = scn.sbs_project_settings
+
+        # Create a new material.
+        nbr = len(slc_obj.material_slots)
+        name_mat = project_name
+        name_mat = name_mat + "_set_" + str(nbr)
+        new_mat = bpy.data.materials.new(name_mat)
 
         for obj in all_obj:
             name_obj = bpy.data.objects[obj.name]
             if obj.get('substance_project') is not None:
                 name_prj = bpy.data.objects[obj.name]['substance_project']
                 if name_prj == project_name:
-                    nbr = len(bpy.data.objects[obj.name].material_slots)
-
-                    name_mat = project_name
-                    name_mat = name_mat + "_" + str(nbr)
-                    new_mat = bpy.data.materials.new(name_mat)
                     obj.data.materials.append(new_mat)
+
+        return {'FINISHED'}
+
+
+# -----------------------------------------------------------------------------
+# Function unwrap set list, use multi object uv edit to be functional.
+# -----------------------------------------------------------------------------
+class TextureSetOn(bpy.types.Operator):
+    """Tooltip"""
+    bl_idname = "painter.uv_set_on"
+    bl_label = "Make an set list on first."
+
+    index = IntProperty(
+        name="Index Material",
+        default=0,
+    )
+
+    def execute(self, context):
+        scn = context.scene
+        all_obj = bpy.data.objects
+        slc_obj = bpy.context.active_object
+        sbs_settings = scn.sbs_project_settings
+
+        nbr = len(slc_obj.material_slots)
+        index = self.index
+        bpy.context.object.active_material_index = index
+        for i in range(nbr):
+            bpy.ops.object.material_slot_move(direction='UP')
+
+        print(index)
 
         return {'FINISHED'}
 
@@ -147,6 +180,7 @@ def register():
     # Texture Set Functions
     bpy.utils.register_class(TextureSetUnwrap)
     bpy.utils.register_class(TextureSetAdd)
+    bpy.utils.register_class(TextureSetOn)
 
 
 def unregister():
@@ -156,3 +190,4 @@ def unregister():
     # Texture Set Functions
     bpy.utils.unregister_class(TextureSetUnwrap)
     bpy.utils.unregister_class(TextureSetAdd)
+    bpy.utils.unregister_class(TextureSetOn)
