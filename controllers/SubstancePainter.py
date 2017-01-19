@@ -8,7 +8,6 @@
 import bpy
 import threading
 import subprocess
-import os
 import SubstanceBridge
 
 from bpy.props import StringProperty, BoolProperty
