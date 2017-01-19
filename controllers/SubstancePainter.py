@@ -63,6 +63,12 @@ class SendToPainter(bpy.types.Operator):
         addon_prefs = user_preferences.addons["SubstanceBridge"].preferences
         self.painter = str(addon_prefs.painterpath)
 
+        print("path mesh")
+        print(mesh)
+        print("----------")
+        print("obj file name")
+        print(SubstanceBridge.models.project.SubstanceVariable.mesh_name)
+
         if obj.type == 'MESH':
             obj_mesh = bpy.data.objects[obj.name].data
             if obj_mesh.uv_textures:
@@ -70,6 +76,7 @@ class SendToPainter(bpy.types.Operator):
                 bpy.ops.painter.selected_project()
                 bpy.ops.export_scene.obj(filepath=mesh,
                                          use_selection=True,
+                                         use_materials=True,
                                          path_mode='AUTO')
 
                 # Verification si le soft est configuré dans le path

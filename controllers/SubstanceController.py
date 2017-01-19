@@ -157,18 +157,17 @@ class TextureSetOn(bpy.types.Operator):
     )
 
     def execute(self, context):
-        scn = context.scene
-        all_obj = bpy.data.objects
         slc_obj = bpy.context.active_object
-        sbs_settings = scn.sbs_project_settings
 
         nbr = len(slc_obj.material_slots)
         index = self.index
         bpy.context.object.active_material_index = index
         for i in range(nbr):
             bpy.ops.object.material_slot_move(direction='UP')
-
-        print(index)
+            bpy.ops.object.editmode_toggle()
+            bpy.ops.mesh.select_all(action='TOGGLE')
+            bpy.ops.object.material_slot_assign()
+            bpy.ops.object.editmode_toggle()
 
         return {'FINISHED'}
 
