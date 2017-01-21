@@ -8,9 +8,16 @@
 import bpy
 import threading
 import subprocess
-import SubstanceBridge
+# import SubstanceBridge
 
 from bpy.props import StringProperty, BoolProperty
+
+
+class SubstanceVariable(bpy.types.PropertyGroup):
+    # Temporary Folder and obj mesh
+    tmp_folder = bpy.context.user_preferences.filepaths.temporary_directory
+    mesh_name = 'tmp.obj'
+    tmp_mesh = tmp_folder + mesh_name
 
 # ------------------------------------------------------------------------
 # Create a class for a generic thread, else blender are block.
@@ -25,7 +32,7 @@ class SubstancePainterThread(threading.Thread):
         self.path_project = path_project
 
     def run(self):
-        mesh = SubstanceBridge.models.project.SubstanceVariable.tmp_mesh
+        mesh = SubstanceVariable.tmp_mesh
         if self.path_project == "":
             popen = subprocess.call([self.path_painter, '--mesh', mesh])
 
@@ -56,7 +63,8 @@ class SendToPainter(bpy.types.Operator):
 
     def execute(self, context):
         obj = bpy.context.active_object
-        mesh = SubstanceBridge.models.project.SubstanceVariable.tmp_mesh
+
+        mesh = SubstanceVariable.tmp_mesh
 
         user_preferences = bpy.context.user_preferences
         addon_prefs = user_preferences.addons["SubstanceBridge"].preferences
@@ -66,7 +74,7 @@ class SendToPainter(bpy.types.Operator):
         print(mesh)
         print("----------")
         print("obj file name")
-        print(SubstanceBridge.models.project.SubstanceVariable.mesh_name)
+        print(SubstanceVariable.mesh_name)
 
         if obj.type == 'MESH':
             obj_mesh = bpy.data.objects[obj.name].data

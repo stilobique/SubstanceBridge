@@ -49,7 +49,7 @@ bl_info = {
     "warning": "",
     "wiki_url": "https://github.com/stilobique/SubstanceBridge/wiki",
     "category": "3D View",
-    "tracker_url": "https://github.com/stilobique/SubstanceBridge/issues"
+    "tracker_url": "https://github.com/stilobique/SubstanceBridge/issues",
 }
 
 
