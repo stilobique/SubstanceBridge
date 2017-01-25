@@ -10,6 +10,8 @@ import bpy
 import sys
 import importlib
 
+from . import addon_updater_ops
+
 modulesNames = [
     'config.settings',
     # Models
@@ -61,6 +63,7 @@ def register():
         if currentModule in sys.modules:
             if hasattr(sys.modules[currentModule], 'register'):
                 sys.modules[currentModule].register()
+    addon_updater_ops.register(bl_info)
 
 
 # -----------------------------------------------------------------------------

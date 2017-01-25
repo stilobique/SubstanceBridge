@@ -24,7 +24,7 @@ import os
 # Must declare this before classes are loaded
 # otherwise the bl_idnames will not match and have errors.
 # Must be all lowercase and no spaces
-updater.addon = "addon_updater_demo"
+updater.addon = "painter_addon_updater"
 
 
 # -----------------------------------------------------------------------------
@@ -718,10 +718,10 @@ def register(bl_info):
 	# print("Running updater reg")
 
 	# choose your own username
-	updater.user = "cgcookie"
+	updater.user = "stilobique"
 
 	# choose your own repository, must match github name
-	updater.repo = "blender-addon-updater"
+	updater.repo = "SubstanceBridge"
 
 	#updater.addon = # define at top of module, must be done first
 
