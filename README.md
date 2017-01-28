@@ -19,6 +19,8 @@ click "Save User Settings".
 
 You can manually install this tools into your Blender addons path.
 
+> To be correctly functionnal, this addons requiert [Multi object UV Editing](https://github.com/ndee85/Multi-Object-UV-Editing).
+
 **Change text in \<X.YZ\>**
 
 ### Windows
