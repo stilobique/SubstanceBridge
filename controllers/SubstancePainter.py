@@ -32,6 +32,8 @@ class SubstancePainterThread(threading.Thread):
 
     def run(self):
         mesh = SubstanceVariable.tmp_mesh
+        # Variable to define an path export
+        # Proof of concep
         export_path = "C:/"
         if self.path_project == "":
             popen = subprocess.call([self.path_painter,
