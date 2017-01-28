@@ -8,7 +8,6 @@
 import bpy
 import threading
 import subprocess
-# import SubstanceBridge
 
 from bpy.props import StringProperty, BoolProperty
 
@@ -33,14 +32,21 @@ class SubstancePainterThread(threading.Thread):
 
     def run(self):
         mesh = SubstanceVariable.tmp_mesh
+        export_path = "C:/"
         if self.path_project == "":
-            popen = subprocess.call([self.path_painter, '--mesh', mesh])
+            popen = subprocess.call([self.path_painter,
+                                     '--mesh',
+                                     mesh,
+                                     '--export-path',
+                                     export_path])
 
         else:
             popen = subprocess.call([self.path_painter,
                                      '--mesh',
                                      mesh,
-                                     self.path_project])
+                                     self.path_project,
+                                     '--export-path',
+                                     export_path])
 
 # ------------------------------------------------------------------------
 # Function to create an Obj, and export to painter
