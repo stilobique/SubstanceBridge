@@ -94,3 +94,9 @@ ENV/
 
 # PyCharm folder and file
 .idea
+
+# Updater data
+substancebridge_updater/
+
+# Overcommit
+.overcommit.yml
