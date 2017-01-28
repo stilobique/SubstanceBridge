@@ -18,7 +18,7 @@ click "Save User Settings".
 
 You can manually install this tools into your Blender addons path.
 
-**Change text in \<xxx\>**
+**Change text in \<X.YZ\>**
 
 ### Windows
 
