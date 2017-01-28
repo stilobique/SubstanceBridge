@@ -100,3 +100,6 @@ substancebridge_updater/
 
 # Overcommit
 .overcommit.yml
+
+# Ignore blend temporary file
+*.blend*
