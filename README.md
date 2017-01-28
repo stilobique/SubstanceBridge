@@ -6,6 +6,7 @@ batchtools... to optimize your game art workflow. It's free and open source.
 * [Setup](#menu)
   * [Windows](#windows)
   * [Linux](#linux)
+* [How To Used](#how-to-used)
 * [Ressources](#ressources)
 * [Notes](#notes)
 
