@@ -32,6 +32,12 @@ C:\Users\<user sessions>\AppData\Roaming\Blender Foundation\Blender\<X.YZ>\scrip
 cd ~/.config/blender/<X.YZ>/scripts/addons
 ```
 
+## How to used
+
+[More information on Wiki](https://github.com/stilobique/SubstanceBridge/wiki/how-to-used#how-to-used).
+
+![Demonstration](https://github.com/stilobique/SubstanceBridge/wiki/ressources/Demonstration.gif)
+
 ## Ressources
 
 * [Source Github - Stable Release](https://github.com/stilobique/SubstanceBridge "substance bridge on github")
