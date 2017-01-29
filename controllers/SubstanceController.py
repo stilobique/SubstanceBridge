@@ -159,9 +159,12 @@ class TextureSetOn(bpy.types.Operator):
 
     def execute(self, context):
         slc_obj = bpy.context.active_object
+        # Count a nbr of materials
         nbr = len(slc_obj.material_slots)
+        # Select the index material.
         bpy.context.object.active_material_index = self.index
 
+        # Create a loop to move the material on the first positon
         for i in range(nbr):
             bpy.ops.object.material_slot_move(direction='UP')
             bpy.ops.object.editmode_toggle()
