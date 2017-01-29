@@ -15,7 +15,7 @@ from bpy.props import IntProperty
 # -----------------------------------------------------------------------------
 class CreateSubstanceProject(bpy.types.Operator):
     """Tooltip"""
-    bl_idname = "painter.substance_name"
+    bl_idname = "sbs_painter.substance_name"
     bl_label = "Create a new Substance Painter project"
 
     def execute(self, context):
@@ -58,7 +58,7 @@ class CreateSubstanceProject(bpy.types.Operator):
 # -----------------------------------------------------------------------------
 class SelectedProject(bpy.types.Operator):
     """Tooltip"""
-    bl_idname = "painter.selected_project"
+    bl_idname = "sbs_painter.selected_project"
     bl_label = "Selected mesh with this project"
 
     def execute(self, context):
@@ -86,7 +86,7 @@ class SelectedProject(bpy.types.Operator):
 # -----------------------------------------------------------------------------
 class RemovefromProject(bpy.types.Operator):
     """Tooltip"""
-    bl_idname = "painter.remove_from_project"
+    bl_idname = "sbs_painter.remove_from_project"
     bl_label = "Selected mesh with this project"
 
     def execute(self, context):
@@ -102,11 +102,11 @@ class RemovefromProject(bpy.types.Operator):
 # -----------------------------------------------------------------------------
 class TextureSetUnwrap(bpy.types.Operator):
     """Tooltip"""
-    bl_idname = "painter.uv_set"
+    bl_idname = "sbs_painter.uv_set"
     bl_label = "Unwrap mode for a texture set list"
 
     def execute(self, context):
-        bpy.ops.painter.selected_project()
+        bpy.ops.sbs_painter.selected_project()
         bpy.ops.object.multi_object_uv_edit('INVOKE_DEFAULT')
 
         return {'FINISHED'}
@@ -117,7 +117,7 @@ class TextureSetUnwrap(bpy.types.Operator):
 # -----------------------------------------------------------------------------
 class TextureSetAdd(bpy.types.Operator):
     """Tooltip"""
-    bl_idname = "painter.uv_set_add"
+    bl_idname = "sbs_painter.uv_set_add"
     bl_label = "Add a new texture set list."
 
     def execute(self, context):
@@ -148,7 +148,7 @@ class TextureSetAdd(bpy.types.Operator):
 # -----------------------------------------------------------------------------
 class TextureSetOn(bpy.types.Operator):
     """Tooltip"""
-    bl_idname = "painter.uv_set_on"
+    bl_idname = "sbs_painter.uv_set_on"
     bl_label = "Make an set list on first."
 
     index = IntProperty(

@@ -88,7 +88,7 @@ class SendToPainter(bpy.types.Operator):
             obj_mesh = bpy.data.objects[obj.name].data
             if obj_mesh.uv_textures:
                 # Export du mesh selectionne
-                bpy.ops.painter.selected_project()
+                bpy.ops.sbs_painter.selected_project()
                 bpy.ops.export_scene.obj(filepath=mesh,
                                          use_selection=True,
                                          use_materials=True,

@@ -22,18 +22,18 @@ class TextureSetListPanel(bpy.types.Panel):
             icon = "MATERIAL"
             row.prop(shader[mat.name], "name", text="", icon=icon)
             icon = "GROUP_UVS"
-            row.operator("painter.uv_set", text="", icon=icon)
+            row.operator("sbs_painter.uv_set", text="", icon=icon)
 
             liste = act_obj.material_slots
             index = liste.find(mat.name)
 
             if index > 0:
                 icon = "SPACE3"
-                ops = "painter.uv_set_on"
+                ops = "sbs_painter.uv_set_on"
                 row.operator(ops, text="", icon=icon).index = index
 
         name = "Add a Set"
-        layout.operator("painter.uv_set_add", name)
+        layout.operator("sbs_painter.uv_set_add", name)
 
 
 def register():

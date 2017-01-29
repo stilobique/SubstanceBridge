@@ -31,18 +31,18 @@ class SubstanceProjectPanel(bpy.types.Panel):
 
         if obj.get("substance_project") is None:
             icon = "ZOOMIN"
-            row.operator("painter.substance_name", text="", icon=icon)
+            row.operator("sbs_painter.substance_name", text="", icon=icon)
 
             # Not Substance Project in this blend-file
             layout.label("Create a New Project")
 
         else:
             icon = "ZOOMIN"
-            row.operator("painter.substance_name", text="", icon=icon)
+            row.operator("sbs_painter.substance_name", text="", icon=icon)
             icon = "RESTRICT_SELECT_OFF"
-            row.operator("painter.selected_project", text="", icon=icon)
+            row.operator("sbs_painter.selected_project", text="", icon=icon)
             icon = "PANEL_CLOSE"
-            row.operator("painter.remove_from_project", text="", icon=icon)
+            row.operator("sbs_painter.remove_from_project", text="", icon=icon)
 
             name = "Export New Project"
             ops = "object.painter_export"
