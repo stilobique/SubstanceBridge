@@ -144,13 +144,14 @@ class TextureSetAdd(bpy.types.Operator):
 
 
 # -----------------------------------------------------------------------------
-# Function unwrap set list, use multi object uv edit to be functional.
+# Make a set list as a referential
 # -----------------------------------------------------------------------------
 class TextureSetOn(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "sbs_painter.uv_set_on"
     bl_label = "Make an set list on first."
 
+    # Generate a index variable, need to count all set list used.
     index = IntProperty(
         name="Index Material",
         default=0,
@@ -158,10 +159,9 @@ class TextureSetOn(bpy.types.Operator):
 
     def execute(self, context):
         slc_obj = bpy.context.active_object
-
         nbr = len(slc_obj.material_slots)
-        index = self.index
-        bpy.context.object.active_material_index = index
+        bpy.context.object.active_material_index = self.index
+
         for i in range(nbr):
             bpy.ops.object.material_slot_move(direction='UP')
             bpy.ops.object.editmode_toggle()
