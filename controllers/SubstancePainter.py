@@ -76,7 +76,7 @@ class SendToPainter(bpy.types.Operator):
 
         user_preferences = bpy.context.user_preferences
         addon_prefs = user_preferences.addons["SubstanceBridge"].preferences
-        self.painter = str(addon_prefs.painterpath)
+        self.painter = str(addon_prefs.path_painter)
 
         print("path mesh")
         print(mesh)

@@ -47,7 +47,7 @@ class SubstanceSettings(bpy.types.AddonPreferences):
     )
 
     # All software path.
-    painterpath = StringProperty(
+    path_painter = StringProperty(
             name="Substance Painter",
             subtype="FILE_PATH",
             )
@@ -59,18 +59,16 @@ class SubstanceSettings(bpy.types.AddonPreferences):
             name="Batch Tools",
             subtype='DIR_PATH',
             )
-
-    # Project Path.
-    projectpath = StringProperty(
-            name="path Spp files",
-            subtype='FILE_PATH',
+    path_shelf_sbs = StringProperty(
+            name="Shelf SBS",
+            subtype='DIR_PATH',
             )
 
     def draw(self, context):
         layout = self.layout
         layout.label(text="All substance path.")
-        layout.prop(self, "painterpath")
-        # layout.prop(self, "path_batchtools")
+        layout.prop(self, "path_painter")
+        layout.prop(self, "path_batchtools")
         # layout.prop(self, "path_designer")
 
         # Show UI updater Addon
