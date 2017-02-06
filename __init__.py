@@ -63,7 +63,6 @@ bl_info = {
 def register():
     # Check the nimber version Addon
     addon_updater_ops.register(bl_info)
-
     # Add all class present in this addon
     for currentModule in modulesFullNames:
         if currentModule in sys.modules:
