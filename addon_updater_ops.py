@@ -743,7 +743,7 @@ def register(bl_info):
 
     # optional, consider turning off for production or allow as an option
     # This will print out additional debugging info to the console
-    updater.verbose = True  # make False for production default
+    updater.verbose = False  # make False for production default
 
     # optional, customize where the addon updater processing subfolder is,
     # needs to be within the same folder as the addon itself
@@ -817,4 +817,3 @@ def unregister():
 
     global ran_background_check
     ran_background_check = False
-
