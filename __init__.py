@@ -46,7 +46,7 @@ for currentModule in modulesFullNames:
 bl_info = {
     "name": "Substance Bridge",
     "author": "stilobique",
-    "version": (0, 5, 3),
+    "version": (0, 5, 4),
     "blender": (2, 78),
     "location": "Tool Shelf > Substance Panel",
     "description": "A simple way to export into substance painter.",
@@ -61,11 +61,14 @@ bl_info = {
 # Update register all methods to this addons
 # -----------------------------------------------------------------------------
 def register():
+    # Check the nimber version Addon
+    addon_updater_ops.register(bl_info)
+
+    # Add all class present in this addon
     for currentModule in modulesFullNames:
         if currentModule in sys.modules:
             if hasattr(sys.modules[currentModule], 'register'):
                 sys.modules[currentModule].register()
-    addon_updater_ops.register(bl_info)
 
 
 # -----------------------------------------------------------------------------
