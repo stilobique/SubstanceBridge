@@ -715,25 +715,13 @@ def skip_tag_function(tag):
 # -----------------------------------------------------------------------------
 # Register, should be run in the register module itself
 # -----------------------------------------------------------------------------
-
-
-# registering the operators in this module
-def register(bl_info):
+def check(bl_info):
     # See output to verify this register function is working properly
     # print("Running updater reg")
 
-    # choose your own username
     updater.user = "stilobique"
-
-    # choose your own repository, must match github name
     updater.repo = "SubstanceBridge"
-
-    # updater.addon = # define at top of module, must be done first
-
-    # Website for manual addon download, optional
     updater.website = "https://github.com/stilobique/SubstanceBridge/"
-
-    # used to check/compare versions
     updater.current_version = bl_info["version"]
 
     # to hard-set udpate frequency, use this here - however, this demo
@@ -743,7 +731,7 @@ def register(bl_info):
 
     # optional, consider turning off for production or allow as an option
     # This will print out additional debugging info to the console
-    updater.verbose = True  # make False for production default
+    updater.verbose = False  # make False for production default
 
     # optional, customize where the addon updater processing subfolder is,
     # needs to be within the same folder as the addon itself
@@ -778,6 +766,9 @@ def register(bl_info):
     # updater.version_max_update = None  # if not wanting to define a max
     updater.skip_tag = skip_tag_function  # min and max used in this function
 
+
+# registering the operators in this module
+def register():
     # The register line items for all operators/panels
     # If using bpy.utils.register_module(__name__) to register elsewhere
     # in the addon, delete these lines (also from unregister)
@@ -817,4 +808,3 @@ def unregister():
 
     global ran_background_check
     ran_background_check = False
-

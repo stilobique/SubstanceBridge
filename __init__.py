@@ -27,6 +27,9 @@ modulesNames = [
     'controllers.SubstanceController',
     'controllers.SubstanceSetup',
     'controllers.DebugOps',
+    # Auto Updater
+    'addon_updater',
+    'addon_updater_ops',
     ]
 
 modulesFullNames = []
@@ -61,8 +64,8 @@ bl_info = {
 # Update register all methods to this addons
 # -----------------------------------------------------------------------------
 def register():
-    # Check the nimber version Addon
-    addon_updater_ops.register(bl_info)
+    # Check the number version Addon
+    addon_updater_ops.check(bl_info)
 
     # Add all class present in this addon
     for currentModule in modulesFullNames:
