@@ -5,6 +5,7 @@ import bpy
 # Substance Project panel
 # -----------------------------------------------------------------------------
 class SubstanceProjectPanel(bpy.types.Panel):
+    bl_idname = "OBJECT_PT_substance_project"
     bl_label = "Substance Project"
     bl_space_type = "VIEW_3D"
     bl_region_type = "TOOLS"
@@ -18,9 +19,10 @@ class SubstanceProjectPanel(bpy.types.Panel):
         data = scn.sbs_project_settings
 
         layout.label("Project Name")
+        layout.label(ContextChoice.state)
         row = layout.row(align=True)
-        # Check if this object as an Sbs Project.
 
+        # Check if this object as an Sbs Project.
         if act.get('substance_project') is not None:
             sbs_obj = bpy.context.active_object['substance_project']
             scene_name = bpy.context.scene.name
@@ -29,6 +31,7 @@ class SubstanceProjectPanel(bpy.types.Panel):
 
         row.prop(data, 'prj_name', text="")
 
+        # Panel when the selected object has no Substance Project
         if obj.get("substance_project") is None:
             icon = "ZOOMIN"
             row.operator("sbs_painter.substance_name", text="", icon=icon)
@@ -36,6 +39,7 @@ class SubstanceProjectPanel(bpy.types.Panel):
             # Not Substance Project in this blend-file
             layout.label("Create a New Project")
 
+        # If the mesh use a Substance Project
         else:
             icon = "ZOOMIN"
             row.operator("sbs_painter.substance_name", text="", icon=icon)
@@ -57,8 +61,10 @@ class SubstanceProjectPanel(bpy.types.Panel):
 
 
 def register():
+    # bpy.utils.register_class(ContextChoice)
     bpy.utils.register_class(SubstanceProjectPanel)
 
 
 def unregister():
+    # bpy.utils.unregister_class(ContextChoice)
     bpy.utils.unregister_class(SubstanceProjectPanel)
