@@ -3,6 +3,10 @@ import bpy
 
 # -----------------------------------------------------------------------------
 # Substance Project panel
+# Draw the UI panel, only the Substance project options :
+# - Create a new Substance Project
+# - Remove from a Substance Project
+# - Export and re-export
 # -----------------------------------------------------------------------------
 class SubstanceProjectPanel(bpy.types.Panel):
     bl_idname = "OBJECT_PT_substance_project"
@@ -19,7 +23,7 @@ class SubstanceProjectPanel(bpy.types.Panel):
         data = scn.sbs_project_settings
 
         layout.label("Project Name")
-        layout.label(ContextChoice.state)
+        # layout.label(ContextChoice.state)
         row = layout.row(align=True)
 
         # Check if this object as an Sbs Project.
