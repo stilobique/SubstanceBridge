@@ -6,7 +6,6 @@
 # -----------------------------------------------------------------------------
 # Import all Package addon
 # -----------------------------------------------------------------------------
-import bpy
 import sys
 import importlib
 
@@ -68,17 +67,17 @@ def register():
     addon_updater_ops.check(bl_info)
 
     # Add all class present in this addon
-    for currentModule in modulesFullNames:
-        if currentModule in sys.modules:
-            if hasattr(sys.modules[currentModule], 'register'):
-                sys.modules[currentModule].register()
+    for module in modulesFullNames:
+        if module in sys.modules:
+            if hasattr(sys.modules[module], 'register'):
+                sys.modules[module].register()
 
 
 # -----------------------------------------------------------------------------
 # Delete register
 # -----------------------------------------------------------------------------
 def unregister():
-    for currentModule in modulesFullNames:
-        if currentModule in sys.modules:
-            if hasattr(sys.modules[currentModule], 'unregister'):
-                sys.modules[currentModule].unregister()
+    for module in modulesFullNames:
+        if module in sys.modules:
+            if hasattr(sys.modules[module], 'unregister'):
+                sys.modules[module].unregister()
