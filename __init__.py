@@ -22,6 +22,7 @@ modulesNames = [
     'views.MoresOpt',
     'views.DataView',
     # Controllers
+    'controllers.SubstanceCheck',
     'controllers.SubstancePainter',
     'controllers.SubstanceController',
     'controllers.SubstanceSetup',
