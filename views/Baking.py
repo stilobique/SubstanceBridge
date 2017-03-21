@@ -14,7 +14,7 @@ class BakingSubstancePanel(bpy.types.Panel):
         layout = self.layout
 
         name = "Baking map"
-        layout.operator("object.painter_export", name).project = False
+        layout.operator("substance.painter_export", name).project = False
 
 
 def register():
