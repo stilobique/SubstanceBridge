@@ -14,6 +14,7 @@ from . import addon_updater_ops
 modulesNames = [
     'config.settings',
     # Models
+    'models.paths',
     'models.project',
     # Views
     'views.SubstanceProject',
