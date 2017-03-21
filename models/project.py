@@ -4,9 +4,9 @@ from bpy.props import *
 
 
 # ----------------------------------------------------------------------------
-# Class for all settings
+# Variable to all project
 # ----------------------------------------------------------------------------
-class SubstanceProjectItems(bpy.types.PropertyGroup):
+class SbsProjectItems(bpy.types.PropertyGroup):
     # Name of Substance Project
     prj_name = bpy.props.StringProperty(
         name="Project Name",
@@ -30,11 +30,11 @@ class SubstanceProjectItems(bpy.types.PropertyGroup):
 
 
 def register():
-    bpy.utils.register_class(SubstanceProjectItems)
+    bpy.utils.register_class(SbsProjectItems)
     bpy.types.Scene.sbs_project_settings = \
-        bpy.props.PointerProperty(type=SubstanceProjectItems)
+        bpy.props.PointerProperty(type=SbsProjectItems)
 
 
 def unregister():
-    bpy.utils.unregister_class(SubstanceProjectItems)
+    bpy.utils.unregister_class(SbsProjectItems)
     del bpy.types.Scene.sbs_project_settings

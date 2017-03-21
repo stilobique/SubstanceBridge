@@ -8,6 +8,10 @@ from bpy.props import *
 #  -> Substance Painter Path
 # ----------------------------------------------------------------------------
 class SbsModelsSetup(bpy.types.PropertyGroup):
+    path_painter = StringProperty(
+            name="Substance Painter",
+            subtype="FILE_PATH",
+            )
     path_designer = StringProperty(
             name="Substance Designer",
             subtype='FILE_PATH',
@@ -25,7 +29,7 @@ class SbsModelsSetup(bpy.types.PropertyGroup):
 def register():
     bpy.utils.register_class(SbsModelsSetup)
     bpy.types.Scene.sbs_path_settings = \
-        bpy.props.PointerProperty(type=SbsModelsSetup)
+        bpy.props.CollectionProperty(type=SbsModelsSetup)
 
 
 def unregister():
