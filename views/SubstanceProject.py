@@ -53,7 +53,7 @@ class SubstanceProjectPanel(bpy.types.Panel):
             row.operator("sbs_painter.remove_from_project", text="", icon=icon)
 
             name = "Export New Project"
-            ops = "object.painter_export"
+            ops = "substance.painter_export"
             layout.operator(ops, name).project = False
 
             data = scn.sbs_project_settings

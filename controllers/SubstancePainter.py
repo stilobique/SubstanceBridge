@@ -56,8 +56,8 @@ class SubstancePainterThread(threading.Thread):
 
 
 class SendToPainter(bpy.types.Operator):
-    """Tooltip"""
-    bl_idname = "object.painter_export"
+    """Export your mesh to Substance Painter"""
+    bl_idname = "substance.painter_export"
     bl_label = "Send mesh to painter export"
 
     project = BoolProperty(name="It's a new project.")
