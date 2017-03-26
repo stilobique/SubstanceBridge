@@ -1,10 +1,10 @@
 import bpy
 
-from .. import addon_updater_ops
+from ..models.addon_updater_setup import UpdaterVariables
 
+from .. import addon_updater_ops
 # Import all variable setup
 from ..models.paths import SbsModelsSetup
-from ..models.addon_updater_setup import UpdaterVariables
 
 
 # -----------------------------------------------------------------------------

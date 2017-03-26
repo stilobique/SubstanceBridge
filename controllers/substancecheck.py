@@ -2,6 +2,7 @@ import bpy
 
 import threading
 import subprocess
+import re
 
 
 class SubstanceCheckThread(threading.Thread):
@@ -19,14 +20,16 @@ class SubstanceCheck(bpy.types.Operator):
     bl_idname = "substance.check"
     bl_label = "Check the number version and path to Substance Painter"
 
-    painter = bpy.props.StringProperty(name="Path Substance Painter")
+    path = bpy.props.StringProperty(
+        name="Substance Painter Path",
+    )
 
     def execute(self, context):
         user_preferences = bpy.context.user_preferences
         addon_prefs = user_preferences.addons["SubstanceBridge"].preferences
-        self.painter = str(addon_prefs.path_painter)
+        self.path = str(addon_prefs.path_painter)
 
-        launchpainter = SubstanceCheckThread(self.painter)
+        launchpainter = SubstanceCheckThread(self.path)
         launchpainter.start()
 
         return {'FINISHED'}
