@@ -92,9 +92,6 @@ ENV/
 # Rope project settings
 .ropeproject
 
-# PyCharm folder and file
-.idea
-
 # Updater data
 substancebridge_updater/
 
@@ -104,3 +101,6 @@ substancebridge_updater/
 # Ignore blend temporary file
 *.blend1
 *.blend2
+
+# PyCharm folder and file
+/.idea/
