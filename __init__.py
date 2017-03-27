@@ -12,22 +12,23 @@ import importlib
 from . import addon_updater_ops
 
 modulesNames = [
-    'config.settings',
     # Models
+    'models.addon_updater_setup',
     'models.paths',
     'models.project',
     # Views
-    'views.SubstanceProject',
-    'views.TextureSetList',
-    # 'views.Baking',
-    'views.MoresOpt',
-    'views.DataView',
+    # 'views.baking',
+    'views.dataview',
+    'views.moresopt',
+    'views.settings',
+    'views.substanceproject',
+    'views.texturesetlist',
     # Controllers
-    'controllers.SubstanceCheck',
-    'controllers.SubstancePainter',
-    'controllers.SubstanceController',
-    'controllers.SubstanceSetup',
-    'controllers.DebugOps',
+    'controllers.debug',
+    'controllers.substancecheck',
+    'controllers.substancecontroller',
+    'controllers.substancepainter',
+    'controllers.substancesetup',
     # Auto Updater
     'addon_updater',
     'addon_updater_ops',
