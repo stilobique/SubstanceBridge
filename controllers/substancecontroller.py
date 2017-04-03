@@ -61,6 +61,10 @@ class SelectedProject(bpy.types.Operator):
     bl_idname = "sbs_painter.selected_project"
     bl_label = "Selected mesh with this project"
 
+    @classmethod
+    def poll(cls, context):
+        return context.active_object is not None
+
     def execute(self, context):
         scn = context.scene
         all_obj = bpy.data.objects

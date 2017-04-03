@@ -9,6 +9,10 @@ class OpenSbsSettings(bpy.types.Operator):
     bl_idname = "sbs.settings"
     bl_label = "Make an set list on first."
 
+    @classmethod
+    def poll(cls, context):
+        return context.active_object is not None
+
     def execute(self, context):
         bpy.ops.screen.userpref_show('INVOKE_DEFAULT')
         bpy.context.user_preferences.active_section = 'ADDONS'

@@ -36,19 +36,19 @@ class SubstancePainterThread(threading.Thread):
         # Proof of concep
         export_path = "C:/"
         if self.path_project == "":
-            popen = subprocess.call([self.path_painter,
-                                     '--mesh',
-                                     mesh,
-                                     '--export-path',
-                                     export_path])
+            subprocess.call([self.path_painter,
+                             '--mesh',
+                             mesh,
+                             '--export-path',
+                             export_path])
 
         else:
-            popen = subprocess.call([self.path_painter,
-                                     '--mesh',
-                                     mesh,
-                                     self.path_project,
-                                     '--export-path',
-                                     export_path])
+            subprocess.call([self.path_painter,
+                             '--mesh',
+                             mesh,
+                             self.path_project,
+                             '--export-path',
+                             export_path])
 
 # ------------------------------------------------------------------------
 # Function to create an Obj, and export to painter
@@ -56,8 +56,8 @@ class SubstancePainterThread(threading.Thread):
 
 
 class SendToPainter(bpy.types.Operator):
-    """Tooltip"""
-    bl_idname = "object.painter_export"
+    """Export your mesh to Substance Painter"""
+    bl_idname = "substance.painter_export"
     bl_label = "Send mesh to painter export"
 
     project = BoolProperty(name="It's a new project.")
