@@ -65,10 +65,8 @@ class SubstanceProjectPanel(bpy.types.Panel):
 
 
 def register():
-    # bpy.utils.register_class(ContextChoice)
     bpy.utils.register_class(SubstanceProjectPanel)
 
 
 def unregister():
-    # bpy.utils.unregister_class(ContextChoice)
     bpy.utils.unregister_class(SubstanceProjectPanel)
