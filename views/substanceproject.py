@@ -22,8 +22,6 @@ class SubstanceProjectPanel(bpy.types.Panel):
         act = context.active_object
         data = scn.sbs_project_settings
 
-        layout.label("Project Name")
-        # layout.label(ContextChoice.state)
         row = layout.row(align=True)
 
         # Check if this object as an Sbs Project.
