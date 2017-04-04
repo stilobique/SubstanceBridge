@@ -12,11 +12,24 @@ import subprocess
 from bpy.props import StringProperty, BoolProperty
 
 
+# ------------------------------------------------------------------------
+# Function to define the obj name.
+# ------------------------------------------------------------------------
+def objname():
+    sbs_project = bpy.context.active_object
+    data = bpy.data.objects[sbs_project.name]
+    if data.get('substance_project') is not None:
+        sbs_name = data['substance_project']
+        sbs_name = sbs_name + '.obj'
+    else:
+        sbs_name = 'tmp.obj'
+
+    return sbs_name
+
+
 class SubstanceVariable(bpy.types.PropertyGroup):
     # Temporary Folder and obj mesh
     tmp_folder = bpy.context.user_preferences.filepaths.temporary_directory
-    mesh_name = 'tmp.obj'
-    tmp_mesh = tmp_folder + mesh_name
 
 # ------------------------------------------------------------------------
 # Create a class for a generic thread, else blender are block.
@@ -25,30 +38,25 @@ class SubstanceVariable(bpy.types.PropertyGroup):
 
 class SubstancePainterThread(threading.Thread):
 
-    def __init__(self, path_painter, path_project):
+    def __init__(self, path_painter, path_project, name_project):
         threading.Thread.__init__(self)
         self.path_painter = path_painter
         self.path_project = path_project
+        self.name_project = name_project
 
     def run(self):
-        mesh = SubstanceVariable.tmp_mesh
-        # Variable to define an path export
-        # Proof of concep
-        export_path = "C:/"
         if self.path_project == "":
             subprocess.call([self.path_painter,
                              '--mesh',
-                             mesh,
-                             '--export-path',
-                             export_path])
+                             self.name_project,
+                             ])
 
         else:
             subprocess.call([self.path_painter,
                              '--mesh',
                              mesh,
                              self.path_project,
-                             '--export-path',
-                             export_path])
+                             ])
 
 # ------------------------------------------------------------------------
 # Function to create an Obj, and export to painter
@@ -72,7 +80,9 @@ class SendToPainter(bpy.types.Operator):
     def execute(self, context):
         obj = bpy.context.active_object
 
-        mesh = SubstanceVariable.tmp_mesh
+        mesh = SubstanceVariable.tmp_folder
+        name_mesh = objname()
+        mesh = mesh + name_mesh
 
         user_preferences = bpy.context.user_preferences
         addon_prefs = user_preferences.addons["SubstanceBridge"].preferences
@@ -82,7 +92,7 @@ class SendToPainter(bpy.types.Operator):
         print(mesh)
         print("----------")
         print("obj file name")
-        print(SubstanceVariable.mesh_name)
+        # print(SubstanceVariable.mesh_name)
 
         if obj.type == 'MESH':
             obj_mesh = bpy.data.objects[obj.name].data
@@ -98,6 +108,7 @@ class SendToPainter(bpy.types.Operator):
                 if self.painter:
                     scn = context.scene
                     path_sppfile = scn.sbs_project_settings.path_spp
+                    self.name_project = mesh
                     # Test If it's a new project.
                     if self.project is True:
                         self.path_project = path_sppfile
@@ -106,7 +117,8 @@ class SendToPainter(bpy.types.Operator):
                         self.path_project = ""
 
                     launchpainter = SubstancePainterThread(self.painter,
-                                                           self.path_project)
+                                                           self.path_project,
+                                                           self.name_project)
                     launchpainter.start()
                 else:
                     self.report({'WARNING'},
