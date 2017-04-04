@@ -54,7 +54,7 @@ class SubstancePainterThread(threading.Thread):
         else:
             subprocess.call([self.path_painter,
                              '--mesh',
-                             mesh,
+                             self.name_project,
                              self.path_project,
                              ])
 
