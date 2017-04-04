@@ -51,7 +51,7 @@ for currentModule in modulesFullNames:
 bl_info = {
     "name": "Substance Bridge",
     "author": "stilobique",
-    "version": (0, 5, 5),
+    "version": (0, 5, 6),
     "blender": (2, 78),
     "location": "Tool Shelf > Substance Panel",
     "description": "A simple way to export into substance painter.",
