@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.5.6] - 2017-XX-XX
 ### [Added]
+- Texture Set View Panel - Show all Texture Set List (material) only if the selected object used a Substance Project
 ### [Fix]
 - Closed issue #12 - Name export mesh, now the addon use the Substance Project Name
 
