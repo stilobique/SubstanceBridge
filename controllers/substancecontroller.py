@@ -132,7 +132,7 @@ class TextureSetAdd(bpy.types.Operator):
     def execute(self, context):
         scn = context.scene
         all_obj = bpy.data.objects
-        slc_obj = bpy.context.active_object
+        slc_obj = context.active_object
         project_name = scn.sbs_project_settings.prj_name
         sbs_settings = scn.sbs_project_settings
 
