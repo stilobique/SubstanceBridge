@@ -1,9 +1,13 @@
 # -----------------------------------------------------------------------------
 # Substance Controller
 #
-# This file contains many function, name project, add texture set list...
-# All function are create in an operator.
-# 
+# This file contains all Substance Objects ; operator to work with blender
+# for substance painter.
+# Substance Project :
+# - this operator generated a data on the selected object to be used with \
+#         substance
+# Selected Project :
+# - this operator select all element inside the substance project
 # -----------------------------------------------------------------------------
 
 import bpy
@@ -14,13 +18,14 @@ from bpy.props import IntProperty
 # Create a News Substance Project
 # -----------------------------------------------------------------------------
 class CreateSubstanceProject(bpy.types.Operator):
-    """Tooltip"""
+    """This operator write on the selected object all data needed to used
+    the mesh on Substance Painter"""
     bl_idname = "sbs_painter.substance_name"
     bl_label = "Create a new Substance Painter project"
 
     def execute(self, context):
         scn = context.scene
-        slct_obj = bpy.context.selected_objects
+        slct_obj = context.selected_objects
         sbs_settings = scn.sbs_project_settings
 
         # Check if this object can be export for Sbs Painter.
@@ -162,13 +167,15 @@ class TextureSetOn(bpy.types.Operator):
     )
 
     def execute(self, context):
-        slc_obj = bpy.context.active_object
+        slc_obj = context.active_object
         # Count a nbr of materials
         nbr = len(slc_obj.material_slots)
         # Select the index material.
-        bpy.context.object.active_material_index = self.index
+        context.object.active_material_index = self.index
 
-        # Create a loop to move the material on the first positon
+        # Create a loop to move the material on the first position
+        # It's a simple 'macro code', can be change to work on data,
+        # not with any operator
         for i in range(nbr):
             bpy.ops.object.material_slot_move(direction='UP')
             bpy.ops.object.editmode_toggle()
