@@ -1,6 +1,5 @@
 import bpy
 
-
 # -----------------------------------------------------------------------------
 # Substance Project panel
 # Draw the UI panel, only the Substance project options :

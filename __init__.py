@@ -19,12 +19,13 @@ modulesNames = [
     # Views
     # 'views.baking',
     'views.dataview',
-    'views.moresopt',
+    # 'views.moresopt',
     'views.settings',
     'views.substanceproject',
     'views.texturesetlist',
     # Controllers
     'controllers.debug',
+    # 'controllers.icons',
     'controllers.substancecheck',
     'controllers.substancecontroller',
     'controllers.substancepainter',
