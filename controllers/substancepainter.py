@@ -37,7 +37,8 @@ class SubstanceVariable(bpy.types.PropertyGroup):
 
 
 class SubstancePainterThread(threading.Thread):
-
+    """Substance Painter Thread, any argument to launch an new instance
+    project, check the Painter Version and other action."""
     def __init__(self, path_painter, path_project, name_project):
         threading.Thread.__init__(self)
         self.path_painter = path_painter
@@ -78,13 +79,13 @@ class SendToPainter(bpy.types.Operator):
     path_project = StringProperty(name="Path Substance project")
 
     def execute(self, context):
-        obj = bpy.context.active_object
+        obj = context.active_object
 
         mesh = SubstanceVariable.tmp_folder
         name_mesh = objname()
         mesh = mesh + name_mesh
 
-        user_preferences = bpy.context.user_preferences
+        user_preferences = context.user_preferences
         addon_prefs = user_preferences.addons["SubstanceBridge"].preferences
         self.painter = str(addon_prefs.path_painter)
 
