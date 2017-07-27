@@ -16,6 +16,7 @@ modulesNames = [
     'models.addon_updater_setup',
     'models.paths',
     'models.project',
+    # 'models.SubstanceSoftware',
     # Views
     # 'views.baking',
     'views.dataview',
