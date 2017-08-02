@@ -1,14 +1,13 @@
 # -----------------------------------------------------------------------------
 # Substance Painter
 #
-# This file contains controlle all Substance Painter functions, send to SP, or
+# This file contains controller all Substance Painter functions, send to SP, or
 # re-export an project.
 # -----------------------------------------------------------------------------
 
 import bpy
-import threading
-import subprocess
 
+from ..models.SubstanceSoftware import *
 from bpy.props import StringProperty, BoolProperty
 
 
@@ -31,33 +30,6 @@ class SubstanceVariable(bpy.types.PropertyGroup):
     # Temporary Folder and obj mesh
     tmp_folder = bpy.context.user_preferences.filepaths.temporary_directory
 
-# ------------------------------------------------------------------------
-# Create a class for a generic thread, else blender are block.
-# ------------------------------------------------------------------------
-
-
-class SubstancePainterThread(threading.Thread):
-    """Substance Painter Thread, any argument to launch an new instance
-    project, check the Painter Version and other action."""
-    def __init__(self, path_painter, path_project, name_project):
-        threading.Thread.__init__(self)
-        self.path_painter = path_painter
-        self.path_project = path_project
-        self.name_project = name_project
-
-    def run(self):
-        if self.path_project == "":
-            subprocess.call([self.path_painter,
-                             '--mesh',
-                             self.name_project,
-                             ])
-
-        else:
-            subprocess.call([self.path_painter,
-                             '--mesh',
-                             self.name_project,
-                             self.path_project,
-                             ])
 
 # ------------------------------------------------------------------------
 # Function to create an Obj, and export to painter
@@ -93,7 +65,6 @@ class SendToPainter(bpy.types.Operator):
         print(mesh)
         print("----------")
         print("obj file name")
-        # print(SubstanceVariable.mesh_name)
 
         if obj.type == 'MESH':
             obj_mesh = bpy.data.objects[obj.name].data
@@ -117,10 +88,8 @@ class SendToPainter(bpy.types.Operator):
                     else:
                         self.path_project = ""
 
-                    launchpainter = SubstancePainterThread(self.painter,
-                                                           self.path_project,
-                                                           self.name_project)
-                    launchpainter.start()
+                    SbsPainterProject(self.path_project,
+                                      self.name_project).start()
                 else:
                     self.report({'WARNING'},
                                 "No path configured, setup into User Pre.")

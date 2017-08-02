@@ -4,15 +4,7 @@ import threading
 import subprocess
 import re
 
-
-class SubstanceCheckThread(threading.Thread):
-
-    def __init__(self, path_painter):
-        threading.Thread.__init__(self)
-        self.path_painter = path_painter
-
-    def run(self):
-        subprocess.call([self.path_painter, '-v'])
+from ..models.SubstanceSoftware import *
 
 
 class SubstanceCheck(bpy.types.Operator):
@@ -25,12 +17,7 @@ class SubstanceCheck(bpy.types.Operator):
     )
 
     def execute(self, context):
-        user_preferences = bpy.context.user_preferences
-        addon_prefs = user_preferences.addons["SubstanceBridge"].preferences
-        self.path = str(addon_prefs.path_painter)
-
-        launchpainter = SubstanceCheckThread(self.path)
-        launchpainter.start()
+        SbsPainterVersion().start()
 
         return {'FINISHED'}
 
