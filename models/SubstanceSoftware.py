@@ -9,8 +9,12 @@ class to call a software, this number version, this path or many option.
 
 
 class SbsPainter(threading.Thread):
-    """This class is a shell for all inherited class
+    """Principal Class, make a bridge between Substance Painter and Blender.
 
+    Can be improve with many idea, check the process and why not restart it,
+    check if the painter path has good...
+
+    More Command Line painter avaible on Allegorithmic documetation :
     https://docs.allegorithmic.com/documentation/display/SPDOC/Command+Lines
     """
 
@@ -21,11 +25,10 @@ class SbsPainter(threading.Thread):
 
 
 class SbsPainterProject(SbsPainter):
-    """Substance Painter Thread, any argument to launch an new instance
-    project, check the Painter Version and other action.
-
-    You can find all Substance Painter Command Lines on Allegorithmic
-    documentation.
+    """Inherited class, export a mesh from Blender to Painter. Need two
+    arguments :
+    - The temporary folder
+    - The Substance Project Name.
     """
     def __init__(self, path_project, name_project):
         SbsPainter.__init__(self)
@@ -44,6 +47,7 @@ class SbsPainterProject(SbsPainter):
                              ])
 
 class SbsPainterVersion(SbsPainter):
-    """Substance Painter Version call Substance Painter"""
+    """Inherited class ; call Painter with a request, the Substance Painter
+    version number."""
     def run(self):
         subprocess.call([self.path_painter, '-version',])
