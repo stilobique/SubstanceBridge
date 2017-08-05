@@ -8,7 +8,7 @@ import bpy
 # - Export and re-export
 # -----------------------------------------------------------------------------
 class SubstanceProjectPanel(bpy.types.Panel):
-    bl_idname = "OBJECT_PT_substance_project"
+    bl_idname = "OBJECT_PT_sbs_project"
     bl_label = "Substance Project"
     bl_space_type = "VIEW_3D"
     bl_region_type = "TOOLS"

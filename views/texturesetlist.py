@@ -8,6 +8,7 @@ from operator import concat
 
 
 class TextureSetListPanel(bpy.types.Panel):
+    bl_idname = "OBJECT_PT_sbs_txtset"
     bl_label = "Texture Set List"
     bl_space_type = "VIEW_3D"
     bl_region_type = "TOOLS"
@@ -19,31 +20,31 @@ class TextureSetListPanel(bpy.types.Panel):
         obj = context.object
         act_obj = context.active_object
 
+        if act_obj:
+            if act_obj.get('substance_project') is not None:
+                if act_obj:
+                    for mat in obj.material_slots:
+                        shader = bpy.data.materials
+                        row = layout.row(align=True)
 
-        if act_obj.get('substance_project') is not None:
-            if act_obj:
-                for mat in obj.material_slots:
-                    shader = bpy.data.materials
-                    row = layout.row(align=True)
+                        icon = "MATERIAL"
+                        row.prop(shader[mat.name], "name", text="", icon=icon)
+                        icon = "GROUP_UVS"
+                        row.operator("sbs_painter.uv_set", text="", icon=icon)
 
-                    icon = "MATERIAL"
-                    row.prop(shader[mat.name], "name", text="", icon=icon)
-                    icon = "GROUP_UVS"
-                    row.operator("sbs_painter.uv_set", text="", icon=icon)
+                        liste = act_obj.material_slots
+                        index = liste.find(mat.name)
 
-                    liste = act_obj.material_slots
-                    index = liste.find(mat.name)
+                        if index > 0:
+                            icon = "SPACE3"
+                            ops = "sbs_painter.uv_set_on"
+                            row.operator(ops, text="", icon=icon).index = index
 
-                    if index > 0:
-                        icon = "SPACE3"
-                        ops = "sbs_painter.uv_set_on"
-                        row.operator(ops, text="", icon=icon).index = index
+                        prop = "diffuse_color"
+                        row.prop(shader[mat.name], prop, icon=icon, icon_only=True)
 
-                    prop = "diffuse_color"
-                    row.prop(shader[mat.name], prop, icon=icon, icon_only=True)
-
-                name = "Add a Set"
-                layout.operator("sbs_painter.uv_set_add", name)
+                    name = "Add a Set"
+                    layout.operator("sbs_painter.uv_set_add", name)
 
 
 def register():
