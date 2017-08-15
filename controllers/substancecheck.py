@@ -1,10 +1,5 @@
 import bpy
-
-import threading
-import subprocess
-import re
-
-from ..models.SubstanceSoftware import *
+from ..models.SubstanceSoftware import SbsPainterVersion
 
 
 class SubstanceCheck(bpy.types.Operator):
