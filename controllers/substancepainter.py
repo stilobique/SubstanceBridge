@@ -7,7 +7,8 @@
 
 import bpy
 
-from ..models.SubstanceSoftware import *
+from bpy.props import BoolProperty, StringProperty
+from ..models.SubstanceSoftware import SbsPainterProject
 
 # ------------------------------------------------------------------------
 # Function to define the obj name.
