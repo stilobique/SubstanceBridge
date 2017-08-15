@@ -14,7 +14,7 @@ class SbsPainter(threading.Thread):
     Can be improve with many idea, check the process and why not restart it,
     check if the painter path has good...
 
-    More Command Line painter avaible on Allegorithmic documetation :
+    More Command Line painter available on Allegorithmic documentation :
     https://docs.allegorithmic.com/documentation/display/SPDOC/Command+Lines
     """
 
@@ -37,7 +37,7 @@ class SbsPainterProject(SbsPainter):
 
     def run(self):
         if self.path_project == "":
-            subprocess.call([self.path_painter,'--mesh',self.name_project,])
+            subprocess.call([self.path_painter, '--mesh', self.name_project])
 
         else:
             subprocess.call([self.path_painter,
@@ -46,8 +46,9 @@ class SbsPainterProject(SbsPainter):
                              self.path_project,
                              ])
 
+
 class SbsPainterVersion(SbsPainter):
     """Inherited class ; call Painter with a request, the Substance Painter
     version number."""
     def run(self):
-        subprocess.call([self.path_painter, '-version',])
+        subprocess.call([self.path_painter, '-version'])
