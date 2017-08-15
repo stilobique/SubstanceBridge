@@ -8,8 +8,6 @@
 import bpy
 
 from ..models.SubstanceSoftware import *
-from bpy.props import StringProperty, BoolProperty
-
 
 # ------------------------------------------------------------------------
 # Function to define the obj name.
