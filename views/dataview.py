@@ -11,7 +11,7 @@ class SubstanceData(bpy.types.Panel):
     bl_context = "data"
 
     @classmethod
-    def poll(self, context):
+    def poll(cls, context):
         obj_slt = context.active_object
 
         return obj_slt is not None and obj_slt.type == 'MESH'
@@ -28,6 +28,24 @@ class SubstanceData(bpy.types.Panel):
         # Debug Option
         layout.label("Debug Call")
         layout.operator("debug.sbs_data", text="Debug Sbs")
+
+        me = context.mesh
+        layout.template_list("MESH_UL_uvmaps_vcols",
+                             "uvmaps",
+                             me,
+                             "uv_textures",
+                             me.uv_textures,
+                             "active_index",
+                             rows=1)
+
+        # me = context.mesh
+        # layout.template_list("MESH_UL_uvmaps_vcols",
+        #                      "uvmaps",
+        #                      me,
+        #                      "uv_textures",
+        #                      me.uv_textures,
+        #                      "active_index",
+        #                      rows=1)
 
 
 def register():
