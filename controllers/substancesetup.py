@@ -11,11 +11,11 @@ class OpenSbsSettings(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object is not None
+        return context.active_object or context.edit_mode is not None
 
     def execute(self, context):
         bpy.ops.screen.userpref_show('INVOKE_DEFAULT')
-        bpy.context.user_preferences.active_section = 'ADDONS'
+        context.user_preferences.active_section = 'ADDONS'
         bpy.data.window_managers["WinMan"].addon_search = "Substance Bridge"
 
         return {'FINISHED'}
