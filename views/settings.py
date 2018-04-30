@@ -30,12 +30,12 @@ class SubstanceSettings(bpy.types.AddonPreferences):
 
         row = layout.row(align=False)
         row.prop(self, "path_painter")
-        row.operator("substance.check", text="Check").path = self.path_painter
+        # row.operator("substance.check", text="Check").path = self.path_painter
         # layout.prop(self, "path_batchtools")
         # layout.prop(self, "path_designer")
 
         # Show UI updater Addon
-        addon_updater_ops.update_settings_ui(self, context)
+        # addon_updater_ops.update_settings_ui(self, context)
 
 
 def register():
