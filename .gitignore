@@ -93,6 +93,7 @@ ENV/
 
 # Updater data
 substancebridge_updater/
+*.json
 
 # Overcommit
 .overcommit.yml
